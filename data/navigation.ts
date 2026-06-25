@@ -1,0 +1,272 @@
+/**
+ * Navigation data for the Madhavbaug site.
+ * All header / mega-menu / footer content lives here so the
+ * presentation components stay purely structural.
+ */
+
+export type NavLink = { label: string; href: string };
+
+export type MegaColumn = {
+  title: string;
+  links: NavLink[];
+};
+
+export type MegaFeature = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  cta: NavLink;
+};
+
+export type NavItem = {
+  label: string;
+  href: string;
+  columns: MegaColumn[];
+  feature?: MegaFeature;
+};
+
+/* ---------- Top utility bar ---------- */
+export const utilityLeft: NavLink[] = [
+  { label: "Download mibPULSE App", href: "#" },
+  { label: "Have a Question?", href: "#" },
+];
+
+export const utilityRight: NavLink[] = [
+  { label: "Careers", href: "#" },
+  { label: "Nearest Centres", href: "#" },
+  { label: "Shop Now", href: "#" },
+];
+
+/* ---------- Main navigation + mega-menus ---------- */
+export const mainNav: NavItem[] = [
+  {
+    label: "Conditions We Treat",
+    href: "#conditions",
+    columns: [
+      {
+        title: "Heart & Circulation",
+        links: [
+          { label: "Heart Disease", href: "#" },
+          { label: "High Cholesterol", href: "#" },
+          { label: "Triglycerides", href: "#" },
+          { label: "Dyslipidemia", href: "#" },
+          { label: "Hypertension", href: "#" },
+        ],
+      },
+      {
+        title: "Metabolic & Diabetes",
+        links: [
+          { label: "Type 2 Diabetes", href: "#" },
+          { label: "Prediabetes", href: "#" },
+          { label: "Insulin Resistance", href: "#" },
+          { label: "Metabolic Syndrome", href: "#" },
+          { label: "Obesity & Weight Gain", href: "#" },
+        ],
+      },
+      {
+        title: "Liver, Thyroid & More",
+        links: [
+          { label: "Fatty Liver Disease", href: "#" },
+          { label: "NAFLD", href: "#" },
+          { label: "Hypothyroidism", href: "#" },
+          { label: "Stress & Heart Disease", href: "#" },
+          { label: "Sleep Disorders", href: "#" },
+        ],
+      },
+    ],
+    feature: {
+      eyebrow: "Not sure where to start?",
+      title: "Check Your Health Risk",
+      description:
+        "Take a 2-minute clinical assessment and discover your personalised reversal pathway.",
+      cta: { label: "Start Assessment", href: "#" },
+    },
+  },
+  {
+    label: "Treatments",
+    href: "#treatments",
+    columns: [
+      {
+        title: "Signature Therapies",
+        links: [
+          { label: "SHS Protocols", href: "#" },
+          { label: "Specialized CDC Therapies", href: "#" },
+          { label: "Cellular-Level Tissue Repair", href: "#" },
+          { label: "Panchakarma Therapies", href: "#" },
+        ],
+      },
+      {
+        title: "Diagnostics",
+        links: [
+          { label: "PowerMAP Assessment", href: "#" },
+          { label: "Stress ECG Diagnostics", href: "#" },
+          { label: "Ambulatory BP Monitoring", href: "#" },
+        ],
+      },
+      {
+        title: "Nutrition & Coaching",
+        links: [
+          { label: "BMR-Aligned Diet Plans", href: "#" },
+          { label: "Guided Cardio-Rehab", href: "#" },
+          { label: "24/7 On-App Doctor Support", href: "#" },
+        ],
+      },
+    ],
+    feature: {
+      eyebrow: "Evidence-based care",
+      title: "Reverse, Don't Just Manage",
+      description:
+        "Doctor-administered, clinically validated protocols that target the root cause.",
+      cta: { label: "Book a Consultation", href: "#" },
+    },
+  },
+  {
+    label: "Programs",
+    href: "#programs",
+    columns: [
+      {
+        title: "Reversal Programs",
+        links: [
+          { label: "Heart Care Program", href: "#" },
+          { label: "Diabetes Reversal", href: "#" },
+          { label: "Hypertension Control", href: "#" },
+          { label: "Weight Management", href: "#" },
+        ],
+      },
+      {
+        title: "Wellness Plans",
+        links: [
+          { label: "Lifestyle & Diet Plans", href: "#" },
+          { label: "Cardio-Rehab Plan", href: "#" },
+          { label: "Cellular Nutrition Plan", href: "#" },
+        ],
+      },
+    ],
+    feature: {
+      eyebrow: "Personalised",
+      title: "Built Around You",
+      description:
+        "Every program is tailored to your reports, lifestyle and reversal goals.",
+      cta: { label: "Explore Programs", href: "#" },
+    },
+  },
+  {
+    label: "Clinics & Hospitals",
+    href: "#clinics",
+    columns: [
+      {
+        title: "Find Care",
+        links: [
+          { label: "Locate a Centre", href: "#" },
+          { label: "350+ Clinics", href: "#" },
+          { label: "5 Specialty Hospitals", href: "#" },
+          { label: "Book a Consultation", href: "#" },
+        ],
+      },
+      {
+        title: "About Our Network",
+        links: [
+          { label: "NABH Accredited Care", href: "#" },
+          { label: "Standardised Protocols", href: "#" },
+          { label: "Our Medical Team", href: "#" },
+        ],
+      },
+    ],
+    feature: {
+      eyebrow: "350+ centres across India",
+      title: "Care Close to Home",
+      description:
+        "Find expert, non-surgical reversal care right in your neighbourhood.",
+      cta: { label: "Find Your Nearest Centre", href: "#" },
+    },
+  },
+];
+
+/* ---------- Footer ---------- */
+export const footerColumns: MegaColumn[] = [
+  {
+    title: "About Us",
+    links: [
+      { label: "About Madhavbaug", href: "#" },
+      { label: "Dr. Rohit Sane", href: "#" },
+      { label: "Our Research", href: "#" },
+      { label: "Awards & Recognition", href: "#" },
+      { label: "Why Madhavbaug", href: "#" },
+      { label: "Success Stories", href: "#" },
+      { label: "Forum", href: "#" },
+    ],
+  },
+  {
+    title: "Patient Resources",
+    links: [
+      { label: "FAQs", href: "#" },
+      { label: "Diet Plans", href: "#" },
+      { label: "Lifestyle Tips", href: "#" },
+      { label: "Exercise Guides", href: "#" },
+      { label: "Heart Health Resources", href: "#" },
+      { label: "Diabetes Education", href: "#" },
+    ],
+  },
+  {
+    title: "Additional Lifestyle Disorders",
+    links: [
+      { label: "High Cholesterol Treatment", href: "#" },
+      { label: "Triglycerides Management", href: "#" },
+      { label: "Dyslipidemia Treatment", href: "#" },
+      { label: "Fatty Liver Disease", href: "#" },
+      { label: "NAFLD Treatment", href: "#" },
+      { label: "Fatty Liver & Diabetes", href: "#" },
+      { label: "Hypothyroidism", href: "#" },
+      { label: "Weight Gain & Thyroid", href: "#" },
+      { label: "Stress Management", href: "#" },
+      { label: "Sleep Disorders", href: "#" },
+      { label: "Stress & Heart Disease", href: "#" },
+      { label: "Burnout & Metabolic Health", href: "#" },
+      { label: "Metabolic Syndrome", href: "#" },
+      { label: "Insulin Resistance", href: "#" },
+      { label: "Prediabetes", href: "#" },
+    ],
+  },
+  {
+    title: "Success Stories",
+    links: [
+      { label: "Heart Disease Recovery Stories", href: "#" },
+      { label: "Diabetes Transformation Stories", href: "#" },
+      { label: "Weight Loss Stories", href: "#" },
+      { label: "Video Testimonial", href: "#" },
+    ],
+  },
+  {
+    title: "Our Products",
+    links: [
+      { label: "All Products", href: "#" },
+      { label: "Ayurvedic Medicines", href: "#" },
+      { label: "Health Supplements", href: "#" },
+      { label: "Diet & Wellness Products", href: "#" },
+    ],
+  },
+  {
+    title: "Health Score Tools",
+    links: [
+      { label: "Check Your Heart Score", href: "#" },
+      { label: "Check Your Diabetes Score", href: "#" },
+      { label: "Check Your Hypertension Score", href: "#" },
+      { label: "Check Your Obesity Score", href: "#" },
+    ],
+  },
+];
+
+export const footerLegal: NavLink[] = [
+  { label: "Privacy Policy", href: "#" },
+  { label: "Terms of Use", href: "#" },
+  { label: "Compliance Certification", href: "#" },
+  { label: "Financial Assistance", href: "#" },
+  { label: "Investor Relations", href: "#" },
+];
+
+export const socials: { label: string; href: string; icon: "youtube" | "instagram" | "facebook" | "linkedin" }[] = [
+  { label: "YouTube", href: "#", icon: "youtube" },
+  { label: "Instagram", href: "#", icon: "instagram" },
+  { label: "Facebook", href: "#", icon: "facebook" },
+  { label: "LinkedIn", href: "#", icon: "linkedin" },
+];
