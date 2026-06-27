@@ -298,25 +298,53 @@ export const findCentre = {
   body: "With over 300+ clinics and specialized hospitals across India, find expert reversal care right in your neighborhood.",
   cta: { label: "Find Your Nearest Centre", href: "#" },
   states: [
-    "Maharashtra",
-    "Gujarat",
-    "Karnataka",
-    "Delhi NCR",
-    "Madhya Pradesh",
-    "Rajasthan",
-    "Telangana",
+    { name: "Maharashtra", value: "Maharashtra" },
+    { name: "Gujarat", value: "Gujarat" },
+    { name: "Karnataka", value: "Karnataka" },
+    { name: "Delhi NCR", value: "Delhi NCR" },
+    { name: "Madhya Pradesh", value: "Madhya Pradesh" },
+    { name: "Rajasthan", value: "Rajasthan" },
+    { name: "Telangana", value: "Telangana" },
   ],
   citiesByState: {
-    Maharashtra: ["Mumbai", "Pune", "Nagpur", "Nashik", "Thane", "Badlapur"],
-    Gujarat: ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
-    Karnataka: ["Bengaluru", "Mysuru", "Hubli"],
-    "Delhi NCR": ["New Delhi", "Gurugram", "Noida"],
-    "Madhya Pradesh": ["Indore", "Bhopal"],
-    Rajasthan: ["Jaipur", "Jodhpur"],
-    Telangana: ["Hyderabad", "Warangal"],
-  } as Record<string, string[]>,
+    Maharashtra: [
+      { name: "Mumbai", value: "Mumbai" },
+      { name: "Pune", value: "Pune" },
+      { name: "Nagpur", value: "Nagpur" },
+      { name: "Nashik", value: "Nashik" },
+      { name: "Thane", value: "Thane" },
+      { name: "Badlapur", value: "Badlapur" },
+    ],
+    Gujarat: [
+      { name: "Ahmedabad", value: "Ahmedabad" },
+      { name: "Surat", value: "Surat" },
+      { name: "Vadodara", value: "Vadodara" },
+      { name: "Rajkot", value: "Rajkot" },
+    ],
+    Karnataka: [
+      { name: "Bengaluru", value: "Bengaluru" },
+      { name: "Mysuru", value: "Mysuru" },
+      { name: "Hubli", value: "Hubli" },
+    ],
+    "Delhi NCR": [
+      { name: "New Delhi", value: "New Delhi" },
+      { name: "Gurugram", value: "Gurugram" },
+      { name: "Noida", value: "Noida" },
+    ],
+    "Madhya Pradesh": [
+      { name: "Indore", value: "Indore" },
+      { name: "Bhopal", value: "Bhopal" },
+    ],
+    Rajasthan: [
+      { name: "Jaipur", value: "Jaipur" },
+      { name: "Jodhpur", value: "Jodhpur" },
+    ],
+    Telangana: [
+      { name: "Hyderabad", value: "Hyderabad" },
+      { name: "Warangal", value: "Warangal" },
+    ],
+  } as Record<string, { name: string; value: string }[]>,
 };
-
 export const finalCta = {
   title: "Start Your Journey to a Medicine-Free Life with Madhavbaug",
   subtitle:

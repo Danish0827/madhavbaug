@@ -52,7 +52,7 @@ export default function FindCentre() {
               </div>
               <div className="flex justify-center pt-5">
                 <Link
-                  href={'#'}
+                  href={`clinic-hospital-locator?state=${state}/city=${city}`}
                   className="inline-flex items-center group"
                 >
                   <span className="btn-gradient text-white group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium  shadow-lg">
@@ -90,7 +90,7 @@ function SelectField({
 }: {
   label: string;
   value: string;
-  options: string[];
+  options: { name: string; value: string }[];
   onChange: (v: string) => void;
   disabled?: boolean;
 }) {
@@ -104,8 +104,8 @@ function SelectField({
       >
         <option value="">{label}</option>
         {options.map((o) => (
-          <option key={o} value={o}>
-            {o}
+          <option key={o.value} value={o.value}>
+            {o.name}
           </option>
         ))}
       </select>
