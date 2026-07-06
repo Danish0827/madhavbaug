@@ -2,6 +2,9 @@
  * Navigation data for the Madhavbaug site.
  * All header / mega-menu / footer content lives here so the
  * presentation components stay purely structural.
+ *
+ * Links point to real built routes wherever a page exists; entries that
+ * have no page yet keep "#" as an honest placeholder.
  */
 
 export type NavLink = { label: string; href: string };
@@ -25,15 +28,23 @@ export type NavItem = {
   feature?: MegaFeature;
 };
 
+/* ---------- Shared route constants ---------- */
+const LOCATOR = "/clinic-hospital-locator";
+const DIET = "/diet-plans";
+const LIFESTYLE = "/lifestyle-exercise-guide";
+const DOCTORS = "/our-doctors";
+const DIABETES = "/treatments/diabetes";
+const POWERMAP = "/powermap";
+
 /* ---------- Top utility bar ---------- */
 export const utilityLeft: NavLink[] = [
   { label: "Download mibPULSE App", href: "#" },
-  { label: "Have a Question?", href: "#" },
+  { label: "Have a Question?", href: LOCATOR },
 ];
 
 export const utilityRight: NavLink[] = [
   { label: "Careers", href: "#" },
-  { label: "Nearest Centres", href: "#" },
+  { label: "Nearest Centres", href: LOCATOR },
   { label: "Shop Now", href: "#" },
 ];
 
@@ -56,7 +67,7 @@ export const mainNav: NavItem[] = [
       {
         title: "Metabolic & Diabetes",
         links: [
-          { label: "Type 2 Diabetes", href: "#" },
+          { label: "Type 2 Diabetes", href: DIABETES },
           { label: "Prediabetes", href: "#" },
           { label: "Insulin Resistance", href: "#" },
           { label: "Metabolic Syndrome", href: "#" },
@@ -89,8 +100,8 @@ export const mainNav: NavItem[] = [
       {
         title: "Signature Therapies",
         links: [
-          { label: "SHS Protocols", href: "#" },
-          { label: "Specialized CDC Therapies", href: "#" },
+          { label: "SHS Protocols", href: DIABETES },
+          { label: "Specialized CDC Therapies", href: DIABETES },
           { label: "Cellular-Level Tissue Repair", href: "#" },
           { label: "Panchakarma Therapies", href: "#" },
         ],
@@ -98,7 +109,7 @@ export const mainNav: NavItem[] = [
       {
         title: "Diagnostics",
         links: [
-          { label: "PowerMAP Assessment", href: "#" },
+          { label: "PowerMAP Assessment", href: POWERMAP },
           { label: "Stress ECG Diagnostics", href: "#" },
           { label: "Ambulatory BP Monitoring", href: "#" },
         ],
@@ -106,8 +117,8 @@ export const mainNav: NavItem[] = [
       {
         title: "Nutrition & Coaching",
         links: [
-          { label: "BMR-Aligned Diet Plans", href: "#" },
-          { label: "Guided Cardio-Rehab", href: "#" },
+          { label: "BMR-Aligned Diet Plans", href: DIET },
+          { label: "Guided Cardio-Rehab", href: LIFESTYLE },
           { label: "24/7 On-App Doctor Support", href: "#" },
         ],
       },
@@ -117,7 +128,7 @@ export const mainNav: NavItem[] = [
       title: "Reverse, Don't Just Manage",
       description:
         "Doctor-administered, clinically validated protocols that target the root cause.",
-      cta: { label: "Book a Consultation", href: "#" },
+      cta: { label: "Book a Consultation", href: LOCATOR },
     },
   },
   {
@@ -128,17 +139,17 @@ export const mainNav: NavItem[] = [
         title: "Reversal Programs",
         links: [
           { label: "Heart Care Program", href: "#" },
-          { label: "Diabetes Reversal", href: "#" },
+          { label: "Diabetes Reversal", href: DIABETES },
           { label: "Hypertension Control", href: "#" },
-          { label: "Weight Management", href: "#" },
+          { label: "Weight Management", href: DIET },
         ],
       },
       {
         title: "Wellness Plans",
         links: [
-          { label: "Lifestyle & Diet Plans", href: "#" },
-          { label: "Cardio-Rehab Plan", href: "#" },
-          { label: "Cellular Nutrition Plan", href: "#" },
+          { label: "Lifestyle & Diet Plans", href: DIET },
+          { label: "Cardio-Rehab Plan", href: LIFESTYLE },
+          { label: "Cellular Nutrition Plan", href: DIET },
         ],
       },
     ],
@@ -147,28 +158,28 @@ export const mainNav: NavItem[] = [
       title: "Built Around You",
       description:
         "Every program is tailored to your reports, lifestyle and reversal goals.",
-      cta: { label: "Explore Programs", href: "#" },
+      cta: { label: "Explore Programs", href: DIET },
     },
   },
   {
     label: "Clinics & Hospitals",
-    href: "#clinics",
+    href: LOCATOR,
     columns: [
       {
         title: "Find Care",
         links: [
-          { label: "Locate a Centre", href: "#" },
-          { label: "350+ Clinics", href: "#" },
-          { label: "5 Specialty Hospitals", href: "#" },
-          { label: "Book a Consultation", href: "#" },
+          { label: "Locate a Centre", href: LOCATOR },
+          { label: "350+ Clinics", href: LOCATOR },
+          { label: "5 Specialty Hospitals", href: LOCATOR },
+          { label: "Book a Consultation", href: LOCATOR },
         ],
       },
       {
         title: "About Our Network",
         links: [
-          { label: "NABH Accredited Care", href: "#" },
-          { label: "Standardised Protocols", href: "#" },
-          { label: "Our Medical Team", href: "#" },
+          { label: "NABH Accredited Care", href: "/about" },
+          { label: "Standardised Protocols", href: "/about" },
+          { label: "Our Medical Team", href: DOCTORS },
         ],
       },
     ],
@@ -177,7 +188,7 @@ export const mainNav: NavItem[] = [
       title: "Care Close to Home",
       description:
         "Find expert, non-surgical reversal care right in your neighbourhood.",
-      cta: { label: "Find Your Nearest Centre", href: "#" },
+      cta: { label: "Find Your Nearest Centre", href: LOCATOR },
     },
   },
 ];
@@ -187,11 +198,13 @@ export const footerColumns: MegaColumn[] = [
   {
     title: "About Us",
     links: [
-      { label: "About Madhavbaug", href: "#" },
-      { label: "Dr. Rohit Sane", href: "#" },
-      { label: "Our Research", href: "#" },
-      { label: "Awards & Recognition", href: "#" },
-      { label: "Why Madhavbaug", href: "#" },
+      { label: "About Madhavbaug", href: "/about" },
+      { label: "Dr. Rohit Sane", href: "/founder" },
+      { label: "Board of Directors", href: "/board-of-directors" },
+      { label: "Our Doctors", href: DOCTORS },
+      { label: "Our Research", href: "/research" },
+      { label: "Awards & Recognition", href: "/awards" },
+      { label: "Why Madhavbaug", href: "/about" },
       { label: "Success Stories", href: "#" },
       { label: "Forum", href: "#" },
     ],
@@ -200,11 +213,12 @@ export const footerColumns: MegaColumn[] = [
     title: "Patient Resources",
     links: [
       { label: "FAQs", href: "#" },
-      { label: "Diet Plans", href: "#" },
-      { label: "Lifestyle Tips", href: "#" },
-      { label: "Exercise Guides", href: "#" },
+      { label: "Diet Plans", href: DIET },
+      { label: "Lifestyle Tips", href: LIFESTYLE },
+      { label: "Exercise Guides", href: LIFESTYLE },
+      { label: "Insurance", href: "/insurance" },
       { label: "Heart Health Resources", href: "#" },
-      { label: "Diabetes Education", href: "#" },
+      { label: "Diabetes Education", href: DIABETES },
     ],
   },
   {

@@ -59,6 +59,15 @@ type RawClinic = {
   acf?: Record<string, string | undefined>;
 };
 
+export type ClinicStat = { value: string; label: string };
+
+/** A single clinic's full detail (extends the card data with stats + media). */
+export type ClinicDetail = Clinic & {
+  stats: ClinicStat[];
+  whatsappUrl: string;
+  clinicVideo: string;
+};
+
 export type Pagination = {
   page: number;
   per_page: number;
@@ -213,6 +222,43 @@ export async function fetchClinicsPage(query: ClinicQuery): Promise<ClinicsPage>
       total_pages: p.total_pages ?? 1,
       has_more: p.has_more ?? false,
     },
+  };
+}
+
+/** "<span>9600+</span> Consultation Done" -> { value: "9600+", label: "Consultation Done" }. */
+function parseStat(html?: string): ClinicStat | null {
+  const text = stripTags(html);
+  if (!text) return null;
+  const m = text.match(/^(\S+)\s+(.*)$/);
+  return m ? { value: m[1], label: m[2] } : { value: text, label: "" };
+}
+
+/** Fetch one clinic's full detail by slug (GET /clinic/<slug>). */
+export async function fetchClinicBySlug(slug: string): Promise<ClinicDetail | null> {
+  const res = await fetch(`${BASE}/clinic/${encodeURIComponent(slug)}`, {
+    headers: FETCH_HEADERS,
+    next: { revalidate: 300 },
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`Upstream returned ${res.status}`);
+
+  const raw: RawClinic = await res.json();
+  if (!raw?.id) return null;
+
+  const base = normalise(raw);
+  const acf = raw.acf ?? {};
+  const stats = [
+    parseStat(acf.consultation_done),
+    parseStat(acf.years_of_experience),
+    parseStat(acf.heart_disease_patients_treated),
+    parseStat(acf.diabetes_patients_treated),
+  ].filter((s): s is ClinicStat => s !== null);
+
+  return {
+    ...base,
+    stats,
+    whatsappUrl: base.whatsapp ? `https://wa.me/${base.whatsapp}` : "",
+    clinicVideo: acf.clinic_video ?? "",
   };
 }
 

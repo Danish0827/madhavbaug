@@ -25,7 +25,7 @@ export default function SiteFooter() {
   return (
     <footer className="bg-white pt-16">
       <div className="mx-auto w-full container px-5 sm:px-8 lg:px-20">
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr_1.1fr_1fr]">
+        <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr_1.1fr_1fr]">
           {/* Brand column */}
           <div>
             <Image
@@ -46,7 +46,7 @@ export default function SiteFooter() {
                     key={s.label}
                     href={s.href}
                     aria-label={s.label}
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-cream text-brand-purple transition-colors hover:bg-brand-purple hover:text-white"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-[#00658914] text-[#006589] transition-colors hover:bg-[#006589] hover:text-white"
                   >
                     <Icon className="h-5 w-5" />
                   </Link>
@@ -55,18 +55,16 @@ export default function SiteFooter() {
             </div>
 
             {/* App card */}
-            <div className="mt-6 rounded-2xl bg-surface-lav p-5">
+            <div className="mt-6 rounded-2xl bg-brand-purple/10 p-5">
               <div className="flex items-center gap-3">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow">
-                  <Heart className="h-6 w-6 fill-brand-purple text-brand-purple" />
+                <span className="shrink-0 flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow">
+                  <Image src="/assets/icon/footer-logo.svg" alt={footerAbout.appName} width={48} height={48} />
                 </span>
-                <span className="font-display text-2xl text-brand-purple">
+                <span className="font-semibold text-2xl text-black">
                   {footerAbout.appName}
                 </span>
-                <span className="ml-auto rounded-md bg-black px-3 py-2 text-[10px] font-semibold leading-tight text-white">
-                  GET IT ON
-                  <br />
-                  Google Play
+                <span className="ml-auto rounded-md shrink-0">
+                 <Image src="/assets/icon/googleplay.svg" alt="Get it on Google Play" width={180} height={40} />
                 </span>
               </div>
               <p className="mt-3 text-sm text-gray-600">
@@ -118,7 +116,7 @@ function FooterColumnGroup({ titles }: { titles: string[] }) {
     <div className="space-y-8">
       {cols.map((col) => (
         <div key={col.title}>
-          <h4 className="font-display text-lg text-ink">{col.title}</h4>
+          <h4 className="font-semibold text-lg text-ink">{col.title}</h4>
           <ul className="mt-3 space-y-2">
             {col.links.map((l) => (
               <li key={l.label}>

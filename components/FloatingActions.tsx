@@ -6,7 +6,7 @@ export default function FloatingActions() {
   return (
     <div className="fixed bottom-6 right-4 z-30 flex flex-col items-end gap-3 lg:right-6">
       <FloatingButton
-        href="#"
+        href="/clinic-hospital-locator"
         label="Nearest Centres"
         className="btn-gradient text-white"
         icon={<MapPin className="h-5 w-5" />}

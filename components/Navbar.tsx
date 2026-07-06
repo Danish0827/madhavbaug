@@ -64,9 +64,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`${
-        scrolled ? "fixed animate-mm-in" : "absolute"
-      } top-0 z-40 w-full`}
+      className={`${scrolled ? "fixed animate-mm-in" : "absolute"
+        } top-0 z-40 w-full`}
     >
       <div className="mx-auto w-full container px-2 sm:px-4 lg:px-5">
         <div
@@ -106,7 +105,7 @@ export default function Navbar() {
 
           {/* ---------- Main bar ---------- */}
           <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8 lg:py-4">
-            <Link href="#" className="shrink-0">
+            <Link href="/" className="shrink-0">
               <Image
                 src="/assets/logo.png"
                 alt="Madhavbaug — Advanced Ayurveda Clinics and Hospitals"
@@ -126,17 +125,15 @@ export default function Navbar() {
                   onFocus={() => setActive(item.label)}
                   onClick={() => setActive(item.label)}
                   aria-expanded={active === item.label}
-                  className={`flex items-center gap-1 text-sm transition-colors ${
-                    active === item.label
+                  className={`flex items-center gap-1 text-sm transition-colors ${active === item.label
                       ? "text-brand-purple"
                       : "text-gray-800 hover:text-brand-purple"
-                  }`}
+                    }`}
                 >
                   {item.label}
                   <ChevronDown
-                    className={`h-3.5 w-3.5 transition-transform ${
-                      active === item.label ? "rotate-180" : ""
-                    }`}
+                    className={`h-3.5 w-3.5 transition-transform ${active === item.label ? "rotate-180" : ""
+                      }`}
                   />
                 </button>
               ))}
@@ -144,11 +141,15 @@ export default function Navbar() {
 
             <div className="flex items-center gap-2">
               <Link
-                href="#"
-                className="btn-gradient hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-white lg:inline-flex"
+                href='/clinic-hospital-locator'
+                className="hidden lg:inline-flex items-center group"
               >
-                Book a Consultation
-                <ArrowUpRight className="h-4 w-4" />
+                <span className="btn-gradient text-white group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium  shadow-lg">
+                  Book a Consultation
+                </span>
+                <span className="flex  w-fit h-10 items-center justify-center rounded-full bg-white/20">
+                  <ArrowUpRight className="font-thin w-full h-full p-2.5 rounded-full btn-gradient text-white group-hover:rotate-45 group-hover:shadow-xl duration-300 shadow-lg" />
+                </span>
               </Link>
               <button
                 onClick={() => setMobileOpen(true)}

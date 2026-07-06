@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Clock,
   Phone,
@@ -14,7 +15,7 @@ import {
   X,
 } from "lucide-react";
 import type { Clinic, ClinicsPage, GeoTerm, Pagination } from "@/lib/clinics";
-import ClinicMap from "./ClinicMap";
+import ClinicLocatorMap from "./clinic/ClinicLocatorMap";
 import SearchSelect from "./ui/SearchSelect";
 
 const PER_PAGE = 10;
@@ -23,19 +24,16 @@ export default function ClinicLocator() {
   const [clinics, setClinics] = useState<Clinic[]>([]);
   const [pagination, setPagination] = useState<Pagination | null>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
-
   const [states, setStates] = useState<GeoTerm[]>([]);
   const [cities, setCities] = useState<GeoTerm[]>([]);
-
   const [stateSlug, setStateSlug] = useState("");
   const [citySlug, setCitySlug] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [selectedId, setSelectedId] = useState("");
-
+  const [activeId, setActiveId] = useState("");
   const listRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<Map<string, HTMLElement>>(new Map());
+  const router = useRouter();
 
   /* ---- Load states once ---- */
   useEffect(() => {
@@ -129,7 +127,7 @@ export default function ClinicLocator() {
       .then((data: ClinicsPage) => {
         setClinics(data.clinics);
         setPagination(data.pagination);
-        setSelectedId("");
+        setActiveId("");
         setStatus("ready");
         listRef.current?.scrollTo({ top: 0 });
       })
@@ -138,25 +136,17 @@ export default function ClinicLocator() {
       });
     return () => ctrl.abort();
   }, [stateSlug, citySlug, searchQuery, page]);
-
-  const selectClinic = useCallback((id: string) => {
-    setSelectedId(id);
-    cardRefs.current.get(id)?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }, []);
-
   const clearAll = () => {
     setStateSlug("");
     setCitySlug("");
     setSearchInput("");
     setSearchQuery("");
     setPage(1);
-    setSelectedId("");
+    setActiveId("");
   };
-
   const hasFilters = !!(stateSlug || citySlug || searchQuery);
   const total = pagination?.total ?? 0;
   const totalPages = pagination?.total_pages ?? 1;
-
   const rangeLabel = useMemo(() => {
     if (!pagination || total === 0) return "";
     const start = (pagination.page - 1) * pagination.per_page + 1;
@@ -168,8 +158,9 @@ export default function ClinicLocator() {
     <section className="bg-white px-5 pt-24 pb-12 sm:px-8 lg:px-10 lg:pt-28">
       <div className="mx-auto w-full container">
         {/* ---------- Filter bar ---------- */}
-        <div className="rounded-3xl bg-white p-4 shadow-[0_8px_30px_rgba(0,0,0,0.06)] ring-1 ring-black/5 lg:rounded-full lg:p-3 lg:pl-4">
-          <div className="grid gap-3 lg:grid-cols-[1fr_1fr_1.2fr_auto] lg:items-center">
+        <div className="rounded-3xl bg-[#006589]/10 p-4 shadow-[0_8px_30px_rgba(0,0,0,0.06)] ring-1 ring-black/5 lg:rounded-full lg:p-3 lg:pl-4">
+          <div className="grid gap-3 lg:grid-cols-[auto_1fr_1fr_1.2fr] lg:items-center">
+            <span className="text-center px-6 text-[#006589] font-semibold">Locate Your Nearest Clinic:</span>
             <SearchSelect
               label="Select State"
               required
@@ -181,7 +172,7 @@ export default function ClinicLocator() {
                 setStateSlug(v);
                 setCitySlug("");
                 setPage(1);
-                setSelectedId("");
+                setActiveId("");
               }}
             />
             <SearchSelect
@@ -193,10 +184,9 @@ export default function ClinicLocator() {
               onChange={(v) => {
                 setCitySlug(v);
                 setPage(1);
-                setSelectedId("");
+                setActiveId("");
               }}
             />
-
             {/* Debounced search box */}
             <div className="relative w-full">
               <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-purple" />
@@ -217,20 +207,8 @@ export default function ClinicLocator() {
                 </button>
               )}
             </div>
-
-            <button
-              type="button"
-              onClick={() => listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
-              className="btn-gradient group inline-flex h-[45px] items-center justify-center gap-2 rounded-full px-6 text-sm font-medium tracking-wide text-white shadow-lg transition-shadow hover:shadow-xl"
-            >
-              Find Your Nearest Centre
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 transition-transform group-hover:rotate-90">
-                <Search className="h-4 w-4" />
-              </span>
-            </button>
           </div>
         </div>
-
         {/* ---------- Result summary ---------- */}
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm text-gray-600">
@@ -246,21 +224,20 @@ export default function ClinicLocator() {
             </button>
           )}
         </div>
-
         {/* ---------- Map + clinic list ---------- */}
-        <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,590px)_1fr] lg:gap-10">
-          {/* Map (sticky, fixed-zoom) */}
-          <div className="h-[300px] lg:sticky lg:top-28 lg:h-[680px]">
+        <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,400px)_1fr] xl:grid-cols-[minmax(0,500px)_1fr] 2xl:grid-cols-[minmax(0,600px)_1fr] lg:gap-5 xl:gap-8">
+          {/* Map (sticky) */}
+          <div className="h-[300px] lg:sticky lg:top-30 lg:h-[80vh]">
             <div className="relative z-0 h-full overflow-hidden rounded-[30px] ring-1 ring-black/5 [isolation:isolate]">
-              <ClinicMap clinics={clinics} selectedId={selectedId} onSelect={selectClinic} />
+              <ClinicLocatorMap clinics={clinics} activeId={activeId} />
             </div>
           </div>
 
           {/* Clinic cards + pagination */}
-          <div className="flex flex-col lg:h-[680px]">
+          <div className="flex flex-col ">
             <div
               ref={listRef}
-              className="thin-scroll flex flex-1 flex-col gap-4 lg:overflow-y-auto lg:pr-2"
+              className="thin-scroll flex flex-1 flex-col gap-4 lg:overflow-y-auto lg:p-2"
             >
               {status === "loading" && <ListState icon="loading" message="Loading clinics & hospitals..." />}
               {status === "error" && (
@@ -280,17 +257,12 @@ export default function ClinicLocator() {
                   <ClinicCard
                     key={clinic.id}
                     clinic={clinic}
-                    active={selectedId === String(clinic.id)}
-                    onSelect={selectClinic}
-                    registerRef={(el) => {
-                      if (el) cardRefs.current.set(String(clinic.id), el);
-                      else cardRefs.current.delete(String(clinic.id));
-                    }}
+                    active={activeId === String(clinic.id)}
+                    onHover={() => setActiveId(String(clinic.id))}
+                    onOpen={() => router.push(`/clinic-hospital-locator/${clinic.slug}`)}
                   />
                 ))}
             </div>
-
-            {/* Pagination */}
             {totalPages > 1 && (
               <div className="mt-4 flex shrink-0 items-center justify-between gap-3 border-t border-gray-100 pt-4">
                 <button
@@ -326,18 +298,18 @@ export default function ClinicLocator() {
 function ClinicCard({
   clinic,
   active,
-  onSelect,
-  registerRef,
+  onHover,
+  onOpen,
 }: {
   clinic: Clinic;
   active: boolean;
-  onSelect: (id: string) => void;
-  registerRef: (el: HTMLElement | null) => void;
+  onHover: () => void;
+  onOpen: () => void;
 }) {
   return (
     <article
-      ref={registerRef}
-      onClick={() => onSelect(String(clinic.id))}
+      onClick={onOpen}
+      onMouseEnter={onHover}
       className={`flex min-h-[173px] cursor-pointer flex-col rounded-[30px] p-6 transition-shadow hover:shadow-md ${
         active ? "ring-2 ring-brand-purple/60" : ""
       }`}

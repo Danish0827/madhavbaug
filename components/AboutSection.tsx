@@ -43,7 +43,7 @@ export default function AboutSection() {
             height={1900}
             className="object-cover object-top rounded-4xl lg:rounded-l-none lg:rounded-r-4xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent rounded-4xl lg:rounded-r-none lg:rounded-r-4xl" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent rounded-4xl lg:rounded-l-none lg:rounded-r-4xl" />
 
           {/* Floating highlight pills */}
           <div className="absolute hidden -right-8 bottom-1/2 lg:flex flex-col translate-y-1/2 gap-4">

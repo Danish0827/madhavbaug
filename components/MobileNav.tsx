@@ -20,16 +20,14 @@ export default function MobileNav({
       {/* Backdrop */}
       <div
         onClick={onClose}
-        className={`fixed inset-0 z-50 bg-black/40 transition-opacity duration-300 lg:hidden ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-50 bg-black/40 transition-opacity duration-300 lg:hidden ${open ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
       />
 
       {/* Drawer */}
       <aside
-        className={`thin-scroll fixed right-0 top-0 z-50 flex h-full w-[88%] max-w-sm flex-col overflow-y-auto bg-white shadow-2xl transition-transform duration-300 lg:hidden ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`thin-scroll fixed right-0 top-0 z-50 flex h-full w-[88%] max-w-sm flex-col overflow-y-auto bg-white shadow-2xl transition-transform duration-300 lg:hidden ${open ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
           <Image src="/assets/logo.png" alt="Madhavbaug" width={160} height={31} />
@@ -53,15 +51,13 @@ export default function MobileNav({
                 >
                   {item.label}
                   <ChevronDown
-                    className={`h-4 w-4 text-brand-purple transition-transform ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
+                    className={`h-4 w-4 text-brand-purple transition-transform ${isOpen ? "rotate-180" : ""
+                      }`}
                   />
                 </button>
                 <div
-                  className={`grid overflow-hidden transition-all duration-300 ${
-                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                  }`}
+                  className={`grid overflow-hidden transition-all duration-300 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
                 >
                   <div className="min-h-0">
                     <div className="space-y-4 px-3 pb-4">
@@ -95,12 +91,16 @@ export default function MobileNav({
 
         <div className="px-5 pb-4">
           <Link
-            href="#"
+            href="/clinic-hospital-locator"
             onClick={onClose}
-            className="btn-gradient flex w-full items-center justify-center gap-2 rounded-full py-3 text-sm font-medium text-white"
+            className="inline-flex w-full items-center group"
           >
-            Book a Consultation
-            <ArrowUpRight className="h-4 w-4" />
+            <span className="btn-gradient w-full justify-center text-white group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium  shadow-lg">
+              Book a Consultation
+            </span>
+            <span className="flex shrink-0 w-fit h-10 items-center justify-center rounded-full bg-white/20">
+              <ArrowUpRight className="font-thin w-full h-full p-2.5 rounded-full btn-gradient text-white group-hover:rotate-45 group-hover:shadow-xl duration-300 shadow-lg" />
+            </span>
           </Link>
         </div>
 

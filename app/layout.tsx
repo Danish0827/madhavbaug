@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${lora.variable} antialiased`}>
-      <body className="min-h-screen overflow-x-hidden bg-white">{children}</body>
+      <body className="min-h-screen overflow-x-clip bg-white">{children}</body>
     </html>
   );
 }

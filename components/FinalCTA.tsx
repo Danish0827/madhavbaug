@@ -27,7 +27,7 @@ export default function FinalCTA() {
               </p>
             </div>
             <Link
-                  href={'#'}
+                  href={'/clinic-hospital-locator'}
                   className="inline-flex items-center group"
                 >
                   <span className="bg-white group-hover:bg-white/90 text-[rgb(137,47,172)] group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium  shadow-lg">

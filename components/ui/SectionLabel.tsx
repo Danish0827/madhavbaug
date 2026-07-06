@@ -1,4 +1,5 @@
 import { Sprout } from "lucide-react";
+import Image from "next/image";
 
 type Props = {
   children: React.ReactNode;
@@ -19,7 +20,8 @@ export default function SectionLabel({
         tone === "light" ? "text-white/80" : "text-eyebrow"
       } ${className}`}
     >
-      <Sprout className="h-5 w-5" strokeWidth={2} />
+      <Image src="/assets/icon/main.svg" alt="Leaf" width={15} height={15} />
+      {/* <Sprout className="" strokeWidth={2} /> */}
       {children}
     </span>
   );
