@@ -32,7 +32,7 @@ export default function FaqSection({
           </div>
           <h2 className="font-display mt-4 text-2xl text-ink lg:text-[32px]">{title}</h2>
         </div>
-        <div className="mx-auto mt-10 max-w-3xl">
+        <div className="mx-auto mt-10 max-w-5xl">
           <Accordion
             items={items.map((q) => ({ title: q.question, body: q.answer }))}
             defaultOpen={defaultOpen}

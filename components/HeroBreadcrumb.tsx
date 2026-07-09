@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import LeadForm from "./lp/LeadForm";
 
 interface BreadcrumbItem {
     label: string;
@@ -19,7 +20,7 @@ interface HeroBreadcrumbProps {
     heroTitle: string;
     heroDescription: string;
     pageTitle: string;
-    breadcrumbs: BreadcrumbItem[];
+    breadcrumbs: BreadcrumbItem[] | null;
     primaryButton?: ButtonProps | null;
     secondaryButton?: ButtonProps | null;
 }
@@ -35,7 +36,7 @@ export default function HeroBreadcrumb({
 }: HeroBreadcrumbProps) {
     return (
         <section className="relative pb-20 xl:pb-24">
-            <div className="h-[78svh] min-h-[620px] w-full overflow-hidden sm:h-[700px] lg:h-100 xl:h-200 2xl:h-200">
+            <div className="relative h-[90svh] min-h-[620px] w-full overflow-hidden sm:h-[700px] lg:h-100 xl:h-200 2xl:h-200">
                 <Image
                     src={image}
                     alt={imageAlt}
@@ -45,13 +46,48 @@ export default function HeroBreadcrumb({
                 />
                 <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-indigo-deep via-blue-deep/95 to-transparent lg:hidden" />
                 <div className="absolute inset-0">
-                    <div className="container mx-auto flex h-full items-end px-5 pb-30 sm:px-8 lg:items-center lg:px-20 lg:pb-0">
-                        <div className="max-w-md text-white lg:ml-auto">
+                    <div className="container mx-auto flex h-full items-end px-5 pb-10 lg:pb-30 sm:px-8 lg:items-center lg:px-20 lg:pb-0 lg:-mt-20">
+                        <div className="max-w-2xl text-white lg:ml-auto">
                             <h1 className="font-display text-[30px] leading-tight sm:text-4xl lg:text-3xl xl:text-[40px]">
                                 {heroTitle}
                             </h1>
                             <div
-                                className="mt-4 text-sm leading-relaxed text-white/85 xl:text-base lg:mt-5"
+                                className="
+    mt-5
+    text-white
+
+    [&_p]:mb-6
+    [&_p]:text-base
+    [&_p]:leading-7
+    [&_p]:text-white/90
+
+    [&_ul]:flex
+    [&_ul]:flex-wrap
+    [&_ul]:gap-4
+    [&_ul]:list-none
+    [&_ul]:p-0
+    [&_ul]:m-0
+
+    [&_li]:flex
+    [&_li]:items-center
+    [&_li]:gap-2
+    [&_li]:rounded-full
+    [&_li]:bg-white/15
+    [&_li]:backdrop-blur-sm
+    [&_li]:px-5
+    [&_li]:py-3
+    [&_li]:text-sm
+    [&_li]:font-medium
+    [&_li]:text-white
+
+    [&_li]:before:content-['✓']
+    [&_li]:before:flex
+    [&_li]:before:items-center
+    [&_li]:before:justify-center
+    [&_li]:before:w-4
+    [&_li]:before:h-4
+    [&_li]:before:text-white
+  "
                                 dangerouslySetInnerHTML={{ __html: heroDescription }}
                             />
                             <div className="mt-6 flex flex-wrap items-center gap-3 lg:mt-8 lg:gap-4">
@@ -90,7 +126,7 @@ export default function HeroBreadcrumb({
             </div>
 
             {/* Bottom Card */}
-            <div className="relative top-30 lg:top-0 z-10 mx-auto -mb-10 -mt-14 w-full max-w-[1000px] px-4 lg:-mt-24">
+            <div className="relative top-30 lg:top-0 z-10 mx-auto -mb-10 -mt-14 w-full container px-4 lg:-mt-24">
                 <div className="round bg-white px-6 py-8 text-center sm:px-10 rounded-[90px]">
                     <div className="mb-3 flex flex-wrap items-center justify-center gap-2">
                         {breadcrumbs?.map((item, index) => (
@@ -113,9 +149,17 @@ export default function HeroBreadcrumb({
                         ))}
                     </div>
 
-                    <h2 className="font-display text-2xl text-ink sm:text-3xl lg:text-[40px] pb-10">
-                        {pageTitle}
-                    </h2>
+                    {pageTitle === "Book an Appointment" ? (
+                        <>
+
+                            <div id="book" className="scroll-mt-24">
+                                <LeadForm source="Obesity Care LP" />
+                            </div>
+                        </>
+                    ) :
+                        <h2 className="font-display text-2xl text-ink sm:text-3xl lg:text-[40px] pb-10">
+                            {pageTitle}
+                        </h2>}
                 </div>
             </div>
         </section>

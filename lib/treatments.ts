@@ -194,3 +194,10 @@ export async function fetchTreatmentBySlug(slug: string): Promise<Treatment | nu
   if (!raw?.id) return null;
   return map(raw);
 }
+
+export async function fetchLandingBySlug(slug: string) {
+  const res = await fetch(`${BASE}/landing-pages/${slug}`);
+  const raw = await res.json();
+
+  return raw.data;
+}
