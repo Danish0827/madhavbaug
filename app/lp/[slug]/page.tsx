@@ -79,10 +79,10 @@ export default async function LandingPage({ params }: Params) {
 
         {/* ---------- Care ---------- */}
         <section id="why" className="scroll-mt-24 px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-          <div className="mx-auto grid w-full container items-center gap-10 lg:grid-cols-2">
+          <div className="mx-auto grid w-full h-full container items-center gap-10 lg:grid-cols-[45%_55%]">
             {care.care_image?.url && (
-              <div className="relative order-1 h-80 w-full overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 lg:h-[520px]">
-                <Image src={care.care_image.url} alt={care.care_title || ""} fill className="object-cover object-top" sizes="(max-width:1024px) 100vw, 600px" />
+              <div className="relative order-1 xl:w-4/5 h-full mx-auto overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 ">
+                <Image src={care.care_image.url} alt={care.care_title || ""} width={1000} height={1000} className="object-cover w-full h-full object-top" />
               </div>
             )}
             <div className="order-2">
@@ -119,8 +119,8 @@ export default async function LandingPage({ params }: Params) {
               {why.why_choose_button?.title && <BookButton label={why.why_choose_button.title} light />}
             </div>
             {why.why_choose_image?.url && (
-              <div className="relative h-72 overflow-hidden rounded-4xl lg:h-auto lg:rounded-l-none lg:rounded-r-4xl">
-                <Image src={why.why_choose_image.url} alt={why.why_choose_title || ""} fill className="object-cover object-top" sizes="(max-width:1024px) 100vw, 560px" />
+              <div className="relative h-80 overflow-hidden rounded-4xl lg:h-auto lg:rounded-l-none lg:rounded-r-4xl">
+                <Image src={why.why_choose_image.url} alt={why.why_choose_title || ""} width={1000} height={1000} className="object-cover lg:h-150  object-center"  />
               </div>
             )}
           </div>
@@ -129,13 +129,13 @@ export default async function LandingPage({ params }: Params) {
         {/* ---------- Obesity isn't just about weight ---------- */}
         {ob.obesity_information && (
           <section className="px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-            <div className="mx-auto grid w-full container items-center gap-10 lg:grid-cols-2">
+            <div className="mx-auto grid w-full h-full container items-center gap-10 lg:grid-cols-[45%_55%]">
               {ob.obesity_image?.url && (
-                <div className="relative order-1 h-80 w-full overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 lg:h-[420px]">
-                  <Image src={ob.obesity_image.url} alt={ob.obesity_main_title || ""} fill className="object-cover" sizes="(max-width:1024px) 100vw, 600px" />
+               <div className="relative order-1 xl:w-4/5 h-full mx-auto overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 ">
+                  <Image src={ob.obesity_image.url} alt={ob.obesity_main_title || ""} width={1000} height={1000} className="object-cover lg:h-150  object-center"  />
                 </div>
               )}
-              <div className="order-2">
+              <div className="order-1 lg:order-2">
                 <SectionLabel>{ob.obesity_title}</SectionLabel>
                 <h2 className="font-display mt-4 text-2xl text-ink lg:text-[32px]">{ob.obesity_main_title}</h2>
                 <div
@@ -149,7 +149,7 @@ export default async function LandingPage({ params }: Params) {
 
         {/* ---------- Consultation (cards carousel) ---------- */}
         {cons.consultation_cards?.length > 0 && (
-          <section id="right-for-you" className="scroll-mt-24 bg-surface-lav px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
+          <section id="right-for-you" className="px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
             <div className="mx-auto w-full container">
               <div className="mx-auto max-w-3xl text-center">
                 <div className="flex justify-center">
@@ -160,7 +160,7 @@ export default async function LandingPage({ params }: Params) {
                   <p className="mt-3 text-sm leading-relaxed text-gray-600">{cons.consultation_short_description}</p>
                 )}
               </div>
-              <div className="mt-10">
+              <div className="">
                 <ConsultationCarousel cards={cons.consultation_cards} />
               </div>
             </div>
@@ -178,8 +178,8 @@ export default async function LandingPage({ params }: Params) {
                 {after.after_booking_button?.title && <BookButton label={after.after_booking_button.title} />}
               </div>
               {after.after_booking_image?.url && (
-                <div className="relative order-1 h-72 w-full overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 lg:order-2 lg:h-[420px]">
-                  <Image src={after.after_booking_image.url} alt={after.after_booking_title_copy || ""} fill className="object-cover" sizes="(max-width:1024px) 100vw, 600px" />
+                 <div className="relative order-1 lg:order-2 xl:w-4/5 h-full mx-auto overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 ">
+                  <Image src={after.after_booking_image.url} alt={after.after_booking_title_copy || ""} width={1000} height={1000} className="object-cover lg:h-150  object-center"  />
                 </div>
               )}
             </div>
@@ -188,24 +188,32 @@ export default async function LandingPage({ params }: Params) {
 
         {/* ---------- Booking for a loved one ---------- */}
         {booking.booking_section_description && (
-          <section className="bg-surface-lav px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
-            <div className="mx-auto w-full max-w-3xl text-center">
-              <div className="flex justify-center">
+          <section className="bg-gradient-to-b from-[#006589]/10 to-white px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
+            <div className="mx-auto grid w-full h-full container items-center gap-10 lg:grid-cols-[45%_55%]">
+            {booking.booking_image.url && (
+              <div className="relative order-1 xl:w-4/5 h-full mx-auto overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 ">
+                <Image src={booking.booking_image.url} alt={booking.booking_section_title || ""} width={1000} height={1000} className="object-cover w-full h-full object-top" />
+              </div>
+            )}
+             <div className="order-2">
+              <div className=" ">
                 <SectionLabel>{booking.booking_section_title}</SectionLabel>
               </div>
               <h2 className="font-display mt-4 text-2xl text-ink lg:text-[32px]">{booking.booking_section_main_title}</h2>
               <div
-                className={`mx-auto mt-5 max-w-2xl text-left ${PROSE} [&_ul]:grid sm:[&_ul]:grid-cols-2`}
+                className={` mt-5 max-w-2xl text-left ${PROSE} [&_ul]:grid sm:[&_ul]:grid-cols-2`}
                 dangerouslySetInnerHTML={{ __html: booking.booking_section_description }}
               />
               {booking.booking_section_button?.title && (
-                <div className="flex justify-center">
+                <div className="flex ">
                   <BookButton label={booking.booking_section_button.title} />
                 </div>
               )}
             </div>
+            </div>
           </section>
         )}
+   
 
         {/* ---------- FAQs (from API) ---------- */}
         {t.faq?.faqs?.length > 0 && (

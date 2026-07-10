@@ -26,19 +26,21 @@ export default function ConsultationCarousel({ cards }: { cards: ConsultationCar
         modules={[Navigation]}
         onSwiper={(s) => (ref.current = s)}
         spaceBetween={24}
-        slidesPerView={1.1}
-        breakpoints={{ 640: { slidesPerView: 2.1 }, 1024: { slidesPerView: 3 }, 1280: { slidesPerView: 3.3 } }}
+        loop={true}
+        slidesPerView={1}
+        breakpoints={{ 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 }, 1280: { slidesPerView: 3 } }}
       >
         {cards.map((c, i) => (
           <SwiperSlide key={i} className="h-auto pb-2">
-            <article className="group relative h-72 overflow-hidden rounded-[28px] shadow-sm ring-1 ring-black/5">
+            <article className="group relative h-80 overflow-hidden rounded-[28px] shadow-sm ring-1 ring-black/5">
               {c.card_image?.url && (
                 <Image
                   src={c.card_image.url}
                   alt={c.card_title}
-                  fill
+                  width={1000}
+                  height={1000}
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width:640px) 100vw, 420px"
+                 
                 />
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />

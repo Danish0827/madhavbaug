@@ -14,6 +14,7 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import {
+  lpNav,
   mainNav,
   utilityLeft,
   utilityRight,
@@ -74,7 +75,7 @@ export default function Navbar() {
           onMouseLeave={() => setActive(null)}
         >
           {/* ---------- Utility bar ---------- */}
-          <div className="hidden bg-cream lg:block">
+          {/* <div className="hidden bg-cream lg:block">
             <div className="flex items-center justify-between px-8 py-1.5 text-xs text-gray-700">
               <div className="flex items-center gap-6">
                 {utilityLeft.map((l) => (
@@ -101,7 +102,7 @@ export default function Navbar() {
                 ))}
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* ---------- Main bar ---------- */}
           <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8 lg:py-4">
@@ -118,12 +119,10 @@ export default function Navbar() {
 
             {/* Desktop nav */}
             <nav className="hidden items-center gap-7 lg:flex">
-              {mainNav.map((item) => (
-                <button
+              {lpNav.map((item:any) => (
+                <Link
                   key={item.label}
-                  onMouseEnter={() => setActive(item.label)}
-                  onFocus={() => setActive(item.label)}
-                  onClick={() => setActive(item.label)}
+                 href={item.href}
                   aria-expanded={active === item.label}
                   className={`flex items-center gap-1 text-sm transition-colors ${active === item.label
                       ? "text-brand-purple"
@@ -131,17 +130,14 @@ export default function Navbar() {
                     }`}
                 >
                   {item.label}
-                  <ChevronDown
-                    className={`h-3.5 w-3.5 transition-transform ${active === item.label ? "rotate-180" : ""
-                      }`}
-                  />
-                </button>
+                
+                </Link>
               ))}
             </nav>
 
             <div className="flex items-center gap-2">
               <Link
-                href='/clinic-hospital-locator'
+                href='#book'
                 className="hidden lg:inline-flex items-center group"
               >
                 <span className="btn-gradient text-white group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium  shadow-lg">

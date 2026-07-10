@@ -193,6 +193,29 @@ export const mainNav: NavItem[] = [
   },
 ];
 
+
+export const lpNav:any  = [
+  {
+    label: "Why Choose Us",
+    href: "#why-choose-us",   
+  },
+  {
+    label: "Heart Care Model",
+    href: "#heart-care-model",
+  },
+  {
+    label: "Eligibility",
+    href: "#eligibility",
+  },
+  {
+    label: "Locate Nearest Clinic",
+    href: "#locator",
+  },
+  {
+    label: "FAQs",
+    href: "#faqs",
+  },
+]
 /* ---------- Footer ---------- */
 export const footerColumns: MegaColumn[] = [
   {

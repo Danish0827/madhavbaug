@@ -77,9 +77,9 @@ export default function LeadForm({
   return (
     <form
       onSubmit={onSubmit}
-      className="w-full rounded-[40px] bg-white px-6 lg:px-10 -mt-10"
+      className="w-full rounded-[40px] bg-white px-6 lg:px-10 -mt-20 lg:-mt-10"
     >
-      <h3 className="mb-6 text-center font-serif text-2xl lg:text-[32px] font-medium text-[#2E2E2E]">
+      <h3 className="pt-5 my-6 text-center font-serif text-2xl lg:text-[32px] font-medium text-[#2E2E2E]">
         Book an Appointment
       </h3>
       {/* Honeypot */}

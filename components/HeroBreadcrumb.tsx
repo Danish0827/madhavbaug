@@ -36,61 +36,26 @@ export default function HeroBreadcrumb({
 }: HeroBreadcrumbProps) {
     return (
         <section className="relative pb-20 xl:pb-24">
-            <div className="relative h-[90svh] min-h-[620px] w-full overflow-hidden sm:h-[700px] lg:h-100 xl:h-200 2xl:h-200">
+            <div className="relative h-[90svh] min-h-[620px] w-full overflow-hidden sm:h-[700px] lg:h-170 xl:h-200 2xl:h-220">
                 <Image
                     src={image}
                     alt={imageAlt}
-                    width={1920}
-                    height={1080}
+                    width={2500}
+                    height={2000}
                     className="object-cover object-left lg:object-center w-full h-full"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-indigo-deep via-blue-deep/95 to-transparent lg:hidden" />
                 <div className="absolute inset-0">
-                    <div className="container mx-auto flex h-full items-end px-5 pb-10 lg:pb-30 sm:px-8 lg:items-center lg:px-20 lg:pb-0 lg:-mt-20">
-                        <div className="max-w-2xl text-white lg:ml-auto">
-                            <h1 className="font-display text-[30px] leading-tight sm:text-4xl lg:text-3xl xl:text-[40px]">
+                    <div className="container mx-auto flex h-full items-end px-5 pb-10 lg:pb-30 sm:px-8 lg:items-center lg:px-20 lg:pb-0 lg:mt-20 xl:mt-10">
+                        <div className="max-w-lg xl:max-w-2xl text-white lg:ml-auto">
+                            <h1 className="font-display text-[30px] leading-tight sm:text-4xl lg:text-2xl xl:text-[40px]">
                                 {heroTitle}
                             </h1>
                             <div
-                                className="
-    mt-5
-    text-white
-
-    [&_p]:mb-6
-    [&_p]:text-base
-    [&_p]:leading-7
-    [&_p]:text-white/90
-
-    [&_ul]:flex
-    [&_ul]:flex-wrap
-    [&_ul]:gap-4
-    [&_ul]:list-none
-    [&_ul]:p-0
-    [&_ul]:m-0
-
-    [&_li]:flex
-    [&_li]:items-center
-    [&_li]:gap-2
-    [&_li]:rounded-full
-    [&_li]:bg-white/15
-    [&_li]:backdrop-blur-sm
-    [&_li]:px-5
-    [&_li]:py-3
-    [&_li]:text-sm
-    [&_li]:font-medium
-    [&_li]:text-white
-
-    [&_li]:before:content-['✓']
-    [&_li]:before:flex
-    [&_li]:before:items-center
-    [&_li]:before:justify-center
-    [&_li]:before:w-4
-    [&_li]:before:h-4
-    [&_li]:before:text-white
-  "
+                                className="mt-3 xl:mt-5 text-white [&_p]:mb-6 [&_p]:text-base [&_p]:lg:text-sm [&_p]:xl:text-base [&_p]:leading-7 [&_p]:text-white/90 [&_ul]:flex [&_ul]:flex-wrap [&_ul]:gap-4 [&_ul]:list-none [&_ul]:p-0 [&_ul]:m-0 [&_li]:flex [&_li]:items-center [&_li]:gap-2 [&_li]:rounded-full [&_li]:bg-white/15 [&_li]:backdrop-blur-sm [&_li]:px-4 [&_li]:py-2 [&_li]:lg:py-1.5 [&_li]:xl:py-3 [&_li]:lg:text-xs [&_li]:xl:text-sm [&_li]:text-sm [&_li]:font-medium [&_li]:text-white [&_li]:before:content-['✓'] [&_li]:before:flex [&_li]:before:items-center [&_li]:before:justify-center [&_li]:before:w-4 [&_li]:before:h-4 [&_li]:before:text-white"
                                 dangerouslySetInnerHTML={{ __html: heroDescription }}
                             />
-                            <div className="mt-6 flex flex-wrap items-center gap-3 lg:mt-8 lg:gap-4">
+                            <div className="mt-6 flex flex-wrap items-center gap-3 xl:mt-8 lg:gap-4">
                                 {primaryButton && (
                                     <Link
                                         href={primaryButton.href}
@@ -105,7 +70,6 @@ export default function HeroBreadcrumb({
                                         </span>
                                     </Link>
                                 )}
-
                                 {secondaryButton && (
                                     <Link
                                         href={secondaryButton.href}
