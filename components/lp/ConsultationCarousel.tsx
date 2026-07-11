@@ -39,7 +39,7 @@ export default function ConsultationCarousel({ cards }: { cards: ConsultationCar
                   alt={c.card_title}
                   width={1000}
                   height={1000}
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                  
                 />
               )}

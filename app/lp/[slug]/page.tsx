@@ -61,6 +61,10 @@ export default async function LandingPage({ params }: Params) {
   const booking = t.booking ?? {};
   const counts: any[] = care.counts ?? [];
 
+  // Disease-wise campaign name for the CRM, e.g. "obesity-care" -> "Obesity Landing Page".
+  const disease = (slug.split("-")[0] || "").replace(/^\w/, (c) => c.toUpperCase());
+  const leadCampaign = `${disease} Landing Page`;
+
   return (
     <div id="top" className="bg-white">
       <LpHeader />
@@ -68,20 +72,22 @@ export default async function LandingPage({ params }: Params) {
         {/* ---------- Hero + Form (banner) ---------- */}
         <HeroBreadcrumb
           image={t?.banner?.banner_image?.url}
+          mobImage={t?.banner?.mobile_banner?.url}
           imageAlt={t?.banner?.banner_image?.alt || t?.banner?.banner_heading}
           heroTitle={t?.banner?.banner_heading}
           heroDescription={t?.banner?.banner_content}
           pageTitle="Book an Appointment"
           breadcrumbs={null}
+          leadCampaign={leadCampaign}
           primaryButton={{ label: care.book_button?.title || "Book an Obesity Consultation", href: "#book" }}
           secondaryButton={null}
         />
 
         {/* ---------- Care ---------- */}
-        <section id="why" className="scroll-mt-24 px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
+        <section className="scroll-mt-24 px-5 py-10 sm:px-8 lg:px-10 lg:py-10">
           <div className="mx-auto grid w-full h-full container items-center gap-10 lg:grid-cols-[45%_55%]">
             {care.care_image?.url && (
-              <div className="relative order-1 xl:w-4/5 h-full mx-auto overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 ">
+              <div className="relative order-1 w-full xl:w-4/5 h-full mx-auto overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 ">
                 <Image src={care.care_image.url} alt={care.care_title || ""} width={1000} height={1000} className="object-cover w-full h-full object-top" />
               </div>
             )}
@@ -110,7 +116,7 @@ export default async function LandingPage({ params }: Params) {
         )}
 
         {/* ---------- Why Choose (gradient card + image) ---------- */}
-        <section id="approach" className="scroll-mt-24 bg-white px-5 pb-16 sm:px-8 lg:px-10 lg:pb-24">
+        <section id="why-choose-us" className="scroll-mt-24 bg-white px-5 pb-8 sm:px-8 lg:px-10 lg:pb-10">
           <div className="mx-auto grid w-full container items-stretch gap-5 lg:grid-cols-[55%_45%] lg:gap-0">
             <div className="flex flex-col justify-center rounded-4xl bg-gradient-to-br from-[#006589] to-[#3D4281] p-8 text-white sm:p-10 lg:rounded-r-none lg:rounded-l-4xl lg:p-12">
               <SectionLabel tone="light">{why.why_choose_title}</SectionLabel>
@@ -119,8 +125,8 @@ export default async function LandingPage({ params }: Params) {
               {why.why_choose_button?.title && <BookButton label={why.why_choose_button.title} light />}
             </div>
             {why.why_choose_image?.url && (
-              <div className="relative h-80 overflow-hidden rounded-4xl lg:h-auto lg:rounded-l-none lg:rounded-r-4xl">
-                <Image src={why.why_choose_image.url} alt={why.why_choose_title || ""} width={1000} height={1000} className="object-cover lg:h-150  object-center"  />
+              <div className="relative h-full lg:h-80 overflow-hidden rounded-4xl lg:h-auto lg:rounded-l-none lg:rounded-r-4xl">
+                <Image src={why.why_choose_image.url} alt={why.why_choose_title || ""} width={1000} height={1000} className="object-cover lg:h-200 xl:h-160  object-center"  />
               </div>
             )}
           </div>
@@ -128,7 +134,7 @@ export default async function LandingPage({ params }: Params) {
 
         {/* ---------- Obesity isn't just about weight ---------- */}
         {ob.obesity_information && (
-          <section className="px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
+          <section id="heart-care-model" className="scroll-mt-24 px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
             <div className="mx-auto grid w-full h-full container items-center gap-10 lg:grid-cols-[45%_55%]">
               {ob.obesity_image?.url && (
                <div className="relative order-1 xl:w-4/5 h-full mx-auto overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 ">
@@ -149,7 +155,7 @@ export default async function LandingPage({ params }: Params) {
 
         {/* ---------- Consultation (cards carousel) ---------- */}
         {cons.consultation_cards?.length > 0 && (
-          <section id="right-for-you" className="px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
+          <section id="eligibility" className="scroll-mt-24 px-5 py-5 sm:px-8 lg:px-10 lg:py-10">
             <div className="mx-auto w-full container">
               <div className="mx-auto max-w-3xl text-center">
                 <div className="flex justify-center">
@@ -188,7 +194,7 @@ export default async function LandingPage({ params }: Params) {
 
         {/* ---------- Booking for a loved one ---------- */}
         {booking.booking_section_description && (
-          <section className="bg-gradient-to-b from-[#006589]/10 to-white px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
+          <section id="locator" className="scroll-mt-20 bg-gradient-to-b from-[#006589]/10 to-white px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
             <div className="mx-auto grid w-full h-full container items-center gap-10 lg:grid-cols-[45%_55%]">
             {booking.booking_image.url && (
               <div className="relative order-1 xl:w-4/5 h-full mx-auto overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 ">
@@ -238,7 +244,7 @@ export default async function LandingPage({ params }: Params) {
           </section>
         )}
 
-        <FinalCTA />
+        <FinalCTA ctaHref="#book" />
       </main>
 
       {/* ---------- Footer ---------- */}

@@ -32,7 +32,7 @@ function doPost(e) {
 
     var name = String(data.name || "").trim();
     var phone = String(data.phone || "").trim();
-    var message = String(data.message || "").trim();
+    var pin = String(data.pin || "").trim();
     var source = String(data.source || "Landing Page").trim();
     var when = data.submittedAt ? new Date(data.submittedAt) : new Date();
 
@@ -40,16 +40,16 @@ function doPost(e) {
     var ss = SpreadsheetApp.openById(SHEET_ID);
     var sheet = ss.getSheetByName(SHEET_NAME) || ss.getSheets()[0];
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(["Timestamp", "Name", "Phone", "Message", "Source"]);
+      sheet.appendRow(["Timestamp", "Name", "Phone", "PIN Code", "Source"]);
     }
-    sheet.appendRow([when, name, phone, message, source]);
+    sheet.appendRow([when, name, phone, pin, source]);
 
     // 2) Email notification
     var body =
       "New lead from the Madhavbaug landing page:\n\n" +
       "Name: " + name + "\n" +
       "Phone: " + phone + "\n" +
-      "Message: " + (message || "-") + "\n" +
+      "PIN Code: " + (pin || "-") + "\n" +
       "Source: " + source + "\n" +
       "Time: " + when + "\n";
     MailApp.sendEmail({

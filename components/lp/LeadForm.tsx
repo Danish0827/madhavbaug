@@ -4,10 +4,12 @@ import { useState } from "react";
 import { Loader2, CheckCircle2, Phone, ArrowUpRight } from "lucide-react";
 
 export default function LeadForm({
-  source = "Obesity Care LP",
+  source = "Website",
+  campaign = "Website Landing Page",
   compact = false,
 }: {
   source?: string;
+  campaign?: string;
   compact?: boolean;
 }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -18,17 +20,15 @@ export default function LeadForm({
     const form = e.currentTarget;
     
     const fd = new FormData(form);
-    console.log(fd ,"form data");
     const payload = {
       name: String(fd.get("name") || ""),
       phone: String(fd.get("phone") || ""),
-      message: String(fd.get("message") || ""),
+      pin: String(fd.get("pin") || ""),
       company: String(fd.get("company") || ""), // honeypot
       source,
+      campaign,
     };
 
-
-    console.log(payload ,"payload");
     if (!payload.name.trim() || payload.phone.replace(/\D/g, "").length < 10) {
       setStatus("error");
       setError("Please enter your name and a valid 10-digit phone number.");
@@ -74,12 +74,13 @@ export default function LeadForm({
     );
   }
 
+  
   return (
     <form
       onSubmit={onSubmit}
       className="w-full rounded-[40px] bg-white px-6 lg:px-10 -mt-20 lg:-mt-10"
     >
-      <h3 className="pt-5 my-6 text-center font-serif text-2xl lg:text-[32px] font-medium text-[#2E2E2E]">
+      <h3 className="pt-10 my-6 text-center font-serif text-2xl lg:text-[32px] font-medium text-[#2E2E2E]">
         Book an Appointment
       </h3>
       {/* Honeypot */}
@@ -107,9 +108,12 @@ export default function LeadForm({
 {/* </div> */}
         <div className="flex-1">
           <input
-            id="lead-message"
-            name="message"
-            placeholder="Message"
+            id="lead-pin"
+            name="pin"
+            type="text"
+            inputMode="numeric"
+            maxLength={6}
+            placeholder="PIN Code (optional)"
             className="h-14 w-full rounded-full border border-[#E8D8EC] px-6 text-[15px] outline-none transition focus:border-[#7E3FB6]"
           />
         </div>

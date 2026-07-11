@@ -24,7 +24,7 @@ export default function FaqSection({
 }) {
   if (!items?.length) return null;
   return (
-    <section id={id} className={`px-5 py-14 sm:px-8 lg:px-20 lg:py-20 ${className}`}>
+    <section id={id} className={`px-5 py-14 sm:px-8 lg:px-20 lg:py-10 ${className}`}>
       <div className="mx-auto w-full container">
         <div className="mx-auto max-w-3xl text-center">
           <div className="flex justify-center">

@@ -21,6 +21,8 @@ import {
 } from "@/data/navigation";
 import MegaMenuPanel from "../MegaMenuPanel";
 import MobileNav from "../MobileNav";
+import LpMegaMenuPanel from "../LpMegaMenuPanel";
+import LpMobileNav from "../LpMobileNav";
 
 const utilityIcons: Record<string, React.ReactNode> = {
   "Download mibPULSE App": <Smartphone className="h-3.5 w-3.5" />,
@@ -106,7 +108,7 @@ export default function Navbar() {
 
           {/* ---------- Main bar ---------- */}
           <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8 lg:py-4">
-            <Link href="/" className="shrink-0">
+            {/* <Link href="/" className="shrink-0"> */}
               <Image
                 src="/assets/logo.png"
                 alt="Madhavbaug — Advanced Ayurveda Clinics and Hospitals"
@@ -115,7 +117,7 @@ export default function Navbar() {
                 priority
                 className="h-9 w-auto lg:h-10"
               />
-            </Link>
+            {/* </Link> */}
 
             {/* Desktop nav */}
             <nav className="hidden items-center gap-7 lg:flex">
@@ -158,17 +160,17 @@ export default function Navbar() {
           </div>
 
           {/* ---------- Mega-menu panel (desktop) ---------- */}
-          {activeItem && (
+          {/* {activeItem && (
             <div className="absolute left-0 right-0 top-full z-40 hidden px-2 lg:block">
               <div className="thin-scroll mt-2 max-h-[70vh] overflow-y-auto rounded-2xl border border-gray-100 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
-                <MegaMenuPanel item={activeItem} />
+                <LpMegaMenuPanel item={lpNav} />
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
 
-      <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <LpMobileNav lpNav={lpNav}  open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </header>
   );
 }
