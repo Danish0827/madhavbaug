@@ -115,7 +115,7 @@ export default function Navbar() {
                 width={219}
                 height={42}
                 priority
-                className="h-9 w-auto lg:h-10"
+                className="h-9 w-auto lg:h-7 xl:h-10"
               />
             {/* </Link> */}
 
@@ -126,7 +126,7 @@ export default function Navbar() {
                   key={item.label}
                  href={item.href}
                   aria-expanded={active === item.label}
-                  className={`flex items-center gap-1 text-sm transition-colors ${active === item.label
+                  className={`flex items-center gap-1 text-sm lg:text-[13px] xl:text-sm transition-colors ${active === item.label
                       ? "text-brand-purple"
                       : "text-gray-800 hover:text-brand-purple"
                     }`}
@@ -142,11 +142,11 @@ export default function Navbar() {
                 href='#book'
                 className="hidden lg:inline-flex items-center group"
               >
-                <span className="btn-gradient text-white group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium  shadow-lg">
+                <span className="btn-gradient text-white group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-2 xl:py-3 text-sm lg:text-[13px] xl:text-sm font-medium  shadow-lg">
                   Book a Consultation
                 </span>
-                <span className="flex  w-fit h-10 items-center justify-center rounded-full bg-white/20">
-                  <ArrowUpRight className="font-thin w-full h-full p-2.5 rounded-full btn-gradient text-white group-hover:rotate-45 group-hover:shadow-xl duration-300 shadow-lg" />
+                <span className="flex  w-fit h-8 xl:h-10 items-center justify-center rounded-full bg-white/20">
+                  <ArrowUpRight className="font-thin w-full h-full p-2 rounded-full btn-gradient text-white group-hover:rotate-45 group-hover:shadow-xl duration-300 shadow-lg" />
                 </span>
               </Link>
               <button
@@ -169,7 +169,6 @@ export default function Navbar() {
           )} */}
         </div>
       </div>
-
       <LpMobileNav lpNav={lpNav}  open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </header>
   );

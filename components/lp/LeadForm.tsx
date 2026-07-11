@@ -18,7 +18,7 @@ export default function LeadForm({
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    
+
     const fd = new FormData(form);
     const payload = {
       name: String(fd.get("name") || ""),
@@ -74,11 +74,11 @@ export default function LeadForm({
     );
   }
 
-  
+
   return (
     <form
       onSubmit={onSubmit}
-      className="w-full rounded-[40px] bg-white px-6 lg:px-10 -mt-20 lg:-mt-10"
+      className="w-full rounded-[40px] bg-white px-6 lg:px-0 -mt-20 lg:-mt-10"
     >
       <h3 className="pt-10 my-6 text-center font-serif text-2xl lg:text-[32px] font-medium text-[#2E2E2E]">
         Book an Appointment
@@ -105,7 +105,7 @@ export default function LeadForm({
           placeholder="Mobile Number *"
           required
         />
-{/* </div> */}
+        {/* </div> */}
         <div className="flex-1">
           <input
             id="lead-pin"
@@ -114,7 +114,7 @@ export default function LeadForm({
             inputMode="numeric"
             maxLength={6}
             placeholder="PIN Code (optional)"
-            className="h-14 w-full rounded-full border border-[#E8D8EC] px-6 text-[15px] outline-none transition focus:border-[#7E3FB6]"
+            className="w-full rounded-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition-colors placeholder:text-gray-400 hover:border-brand-purple/50 focus:border-brand-purple focus:ring-4 focus:ring-brand-purple/10"
           />
         </div>
 

@@ -106,9 +106,9 @@ export default async function LandingPage({ params }: Params) {
             <div className="mx-auto grid w-full container gap-5 sm:grid-cols-2 lg:grid-cols-5">
               {counts.map((c, i) => (
                 <div key={i} className="bg-stat-card rounded-[30px] p-6 ring-1 ring-brand-purple/10">
-                  <p className="font-display text-3xl text-ink">{c.number}</p>
-                  <p className="font-display mt-3 text-lg text-ink">{c.heading}</p>
-                  <p className="mt-2 text-sm text-gray-500">{c.short_description}</p>
+                  <p className="font-display text-3xl lg:text-2xl xl:text-3xl text-ink">{c.number}</p>
+                  <p className="font-display mt-3 text-lg lg:text-base xl:text-lg text-ink">{c.heading}</p>
+                  <p className="mt-2 text-sm lg:text-xs xl:text-base text-gray-500">{c.short_description}</p>
                 </div>
               ))}
             </div>

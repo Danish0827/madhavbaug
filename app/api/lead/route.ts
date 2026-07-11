@@ -1,14 +1,21 @@
 /**
  * Lead capture endpoint for the landing pages.
  *
- * On submit it (1) creates the lead in the PowerMAP CRM and (2) emails a
- * notification to LEAD_MAIL_TO via SMTP. All secrets come from env vars
- * (see .env.local): CRM_API_URL, CRM_API_KEY, LEAD_MAIL_* .
+ * The PowerMAP CRM endpoint is reachable but slow (~30-35s to create a lead),
+ * so we validate + respond to the user immediately and push to the CRM + send
+ * the notification email in the BACKGROUND via `after()`. This keeps the form
+ * snappy while still reliably delivering the lead.
+ *
+ * Secrets come from env vars (see .env.local): CRM_API_URL, CRM_API_KEY,
+ * LEAD_MAIL_* . Set the same vars in the production hosting environment.
  */
 
+import { after } from "next/server";
 import nodemailer from "nodemailer";
 
 export const runtime = "nodejs";
+// Allow the background CRM/email work to finish (CRM can take ~35s).
+export const maxDuration = 60;
 
 type LeadBody = {
   name?: string;
@@ -43,39 +50,31 @@ export async function POST(request: Request) {
     );
   }
 
-  const submittedAt = new Date().toISOString();
+  const lead = { name, phone, pin, source, campaign, submittedAt: new Date().toISOString() };
 
-  const [crm, mail] = await Promise.allSettled([
-    sendToCrm({ name, phone, pin, source, campaign }),
-    sendEmail({ name, phone, pin, source, campaign, submittedAt }),
-  ]);
+  // Deliver to CRM + email in the background so the user isn't blocked by the
+  // slow CRM. `after` keeps the invocation alive until these finish.
+  after(async () => {
+    const [crm, mail] = await Promise.allSettled([sendToCrm(lead), sendEmail(lead)]);
+    if (crm.status === "rejected") console.error("[lead] CRM error:", crm.reason);
+    else console.log("[lead] CRM:", crm.value ? "created" : "skipped");
+    if (mail.status === "rejected") console.error("[lead] mail error:", mail.reason);
+    else console.log("[lead] mail:", mail.value ? "sent" : "skipped");
+  });
 
-  const crmOk = crm.status === "fulfilled" && crm.value;
-  const mailOk = mail.status === "fulfilled" && mail.value;
-
-  if (crm.status === "rejected") console.error("[lead] CRM error:", crm.reason);
-  if (mail.status === "rejected") console.error("[lead] mail error:", mail.reason);
-
-  // Lead is considered captured if the CRM accepted it. Email is a secondary
-  // notification and should not block the user's success state.
-  if (!crmOk && !mailOk) {
-    return Response.json(
-      { ok: false, error: "We couldn't submit right now. Please call us or try again." },
-      { status: 502 }
-    );
-  }
-
-  return Response.json({ ok: true, crm: crmOk, mail: mailOk });
+  return Response.json({ ok: true });
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-async function sendToCrm(lead: {
+type Lead = {
   name: string;
   phone: string;
   pin: string;
   source: string;
   campaign: string;
-}): Promise<boolean> {
+  submittedAt: string;
+};
+
+async function sendToCrm(lead: Lead): Promise<boolean> {
   const url = process.env.CRM_API_URL;
   const key = process.env.CRM_API_KEY;
   if (!url || !key) {
@@ -93,8 +92,8 @@ async function sendToCrm(lead: {
       source: lead.source,
       campaign: lead.campaign,
     }),
-    // Fail fast so the form never hangs if the CRM is unreachable.
-    signal: AbortSignal.timeout(12000),
+    // The CRM is slow (~35s); give it room but never hang forever.
+    signal: AbortSignal.timeout(50000),
   });
   if (!res.ok) {
     const detail = await res.text().catch(() => "");
@@ -103,14 +102,7 @@ async function sendToCrm(lead: {
   return true;
 }
 
-async function sendEmail(lead: {
-  name: string;
-  phone: string;
-  pin: string;
-  source: string;
-  campaign: string;
-  submittedAt: string;
-}): Promise<boolean> {
+async function sendEmail(lead: Lead): Promise<boolean> {
   const host = process.env.LEAD_MAIL_HOST;
   const user = process.env.LEAD_MAIL_USER;
   const pass = process.env.LEAD_MAIL_PASS;
@@ -125,9 +117,9 @@ async function sendEmail(lead: {
     port,
     secure: port === 465,
     auth: { user, pass },
-    connectionTimeout: 12000,
-    greetingTimeout: 12000,
-    socketTimeout: 15000,
+    connectionTimeout: 15000,
+    greetingTimeout: 15000,
+    socketTimeout: 20000,
   });
 
   await transport.sendMail({

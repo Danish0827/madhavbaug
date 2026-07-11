@@ -47,6 +47,7 @@ export default function LpMobileNav({
             <Link
               key={item.label}
               href={item.href}
+              onClick={onClose}
               // aria-expanded={active === item.label}
               className={`flex items-center gap-1 text-base transition-colors `}
             >

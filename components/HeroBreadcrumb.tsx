@@ -40,7 +40,7 @@ export default function HeroBreadcrumb({
 }: HeroBreadcrumbProps) {
     return (
         <section className="relative pb-20 xl:pb-24">
-            <div className="relative h-[90svh] min-h-[620px] w-full overflow-hidden sm:h-[700px] lg:h-170 xl:h-200 2xl:h-220">
+            <div className="relative h-190 w-full overflow-hidden lg:h-170 xl:h-200 2xl:h-220">
                 <Image
                     src={image}
                     alt={imageAlt}
@@ -59,7 +59,7 @@ export default function HeroBreadcrumb({
                 <div className="absolute inset-0">
                     <div className="container mx-auto flex h-full items-end px-5 pb-20 lg:pb-30 sm:px-8 lg:items-center lg:px-20 lg:pb-0 lg:mt-20 xl:mt-10">
                         <div className="max-w-lg xl:max-w-2xl text-white lg:ml-auto">
-                            <h1 className="font-display text-[30px] leading-tight sm:text-4xl lg:text-2xl xl:text-[40px]">
+                            <h1 className="font-display text-[30px] leading-tight sm:text-4xl lg:text-xl xl:text-[40px]">
                                 {heroTitle}
                             </h1>
                             <div
