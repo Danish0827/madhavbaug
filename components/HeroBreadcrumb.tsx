@@ -40,14 +40,14 @@ export default function HeroBreadcrumb({
 }: HeroBreadcrumbProps) {
     return (
         <section className="relative pb-20 xl:pb-24">
-            <div className="relative h-190 w-full overflow-hidden lg:h-170 xl:h-200 2xl:h-220">
+            <div className="relative h-190 w-full overflow-hidden lg:h-145 xl:h-170 2xl:h-220">
                 <Image
                     src={image}
                     alt={imageAlt}
                     width={2500}
                     height={2000}
                     
-                    className="object-cover hidden lg:block object-left lg:object-center w-full h-120 lg:h-full"
+                    className="object-cover  hidden lg:block object-left lg:object-center w-full h-120 lg:h-full"
                 />
                 <Image
                     src={mobImage || image}
@@ -58,7 +58,7 @@ export default function HeroBreadcrumb({
                 />
                 <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-indigo-deep via-blue-deep/95 to-transparent lg:hidden" />
                 <div className="absolute inset-0">
-                    <div className="container mx-auto flex h-full items-end px-5 pb-20 lg:pb-30 sm:px-8 lg:items-center lg:px-20 lg:pb-0 lg:mt-20 xl:mt-10">
+                    <div className="container mx-auto flex h-full items-end px-5 pb-20 lg:pb-30 sm:px-8 lg:items-center lg:px-20 lg:pb-0 lg:mt-10 xl:mt-10">
                         <div className="max-w-lg xl:max-w-2xl text-white lg:ml-auto">
                             <h1 className="font-display text-2xl leading-tight sm:text-3xl lg:text-xl xl:text-[40px]">
                                 {heroTitle}

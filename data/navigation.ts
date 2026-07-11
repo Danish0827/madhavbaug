@@ -204,11 +204,11 @@ export const lpNav:any  = [
     href: "#heart-care-model",
   },
   {
-    label: "Eligibility",
+    label: "Who It's For",
     href: "#eligibility",
   },
   {
-    label: "Locate Nearest Clinic",
+    label: "Booking Guide",
     href: "#locator",
   },
   {

@@ -64,7 +64,35 @@ export default function Navbar() {
       document.removeEventListener("keydown", onKey);
     };
   }, [active]);
+useEffect(() => {
+  const handleClick = (e: Event) => {
+    const target = e.currentTarget as HTMLAnchorElement;
+    const href = target.getAttribute("href");
 
+    if (!href?.startsWith("#")) return;
+
+    e.preventDefault();
+
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      // URL hash update
+      history.replaceState(null, "", href);
+    }
+  };
+
+  const links = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
+
+  links.forEach((link) => link.addEventListener("click", handleClick));
+
+  return () => {
+    links.forEach((link) => link.removeEventListener("click", handleClick));
+  };
+}, []);
   return (
     <header
       className={`${scrolled ? "fixed animate-mm-in" : "absolute"
