@@ -11,12 +11,21 @@ import FinalCTA from "@/components/FinalCTA";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { fetchLandingBySlug } from "@/lib/treatments";
 
-export const metadata: Metadata = {
-  title: "Obesity Care Consultation | Madhavbaug",
-  description:
-    "Book a doctor-supervised Madhavbaug obesity consultation - an integrated approach combining modern diagnostics with research-backed Ayurvedic care for lasting metabolic health.",
-};
+export async function generateMetadata({
+  params,
+}: Params): Promise<Metadata> {
+  const { slug } = await params;
 
+  const t: any = await fetchLandingBySlug(slug).catch(() => null);
+
+  const seo = t?.seo || {};
+
+  return {
+    title: seo.meta_title || "Madhavbaug",
+    description: seo.meta_description || "",
+    keywords: seo.meta_keywords || "",
+  };
+}
 /* Shared rich-text styling for the CMS HTML fields. */
 const PROSE =
   "text-sm leading-relaxed text-gray-600 lg:text-base [&_p]:mb-3 [&_strong]:font-semibold [&_strong]:text-ink [&_b]:font-semibold [&_b]:text-ink [&_ul]:mt-4 [&_ul]:space-y-2.5 [&_li]:relative [&_li]:pl-6 [&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:top-[9px] [&_li]:before:h-2 [&_li]:before:w-2 [&_li]:before:rounded-full [&_li]:before:bg-brand-purple";

@@ -46,6 +46,7 @@ export default function HeroBreadcrumb({
                     alt={imageAlt}
                     width={2500}
                     height={2000}
+                    
                     className="object-cover hidden lg:block object-left lg:object-center w-full h-120 lg:h-full"
                 />
                 <Image
@@ -59,7 +60,7 @@ export default function HeroBreadcrumb({
                 <div className="absolute inset-0">
                     <div className="container mx-auto flex h-full items-end px-5 pb-20 lg:pb-30 sm:px-8 lg:items-center lg:px-20 lg:pb-0 lg:mt-20 xl:mt-10">
                         <div className="max-w-lg xl:max-w-2xl text-white lg:ml-auto">
-                            <h1 className="font-display text-[30px] leading-tight sm:text-4xl lg:text-xl xl:text-[40px]">
+                            <h1 className="font-display text-2xl leading-tight sm:text-3xl lg:text-xl xl:text-[40px]">
                                 {heroTitle}
                             </h1>
                             <div
