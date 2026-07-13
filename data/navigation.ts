@@ -276,7 +276,7 @@ export const footerColumns: MegaColumn[] = [
   {
     title: "Our Products",
     links: [
-      { label: "All Products", href: "#" },
+      { label: "All Products", href: "/products" },
       { label: "Ayurvedic Medicines", href: "#" },
       { label: "Health Supplements", href: "#" },
       { label: "Diet & Wellness Products", href: "#" },

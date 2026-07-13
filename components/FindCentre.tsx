@@ -1,17 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, ChevronDown, MapPin, Search } from "lucide-react";
+import { Building2, MapPin, Search } from "lucide-react";
 import SectionLabel from "./ui/SectionLabel";
+import SearchSelect from "./ui/SearchSelect";
 import { findCentre } from "@/data/content";
+import type { GeoTerm } from "@/lib/clinics";
 import Link from "next/link";
 
 export default function FindCentre() {
+  const [states, setStates] = useState<GeoTerm[]>([]);
+  const [cities, setCities] = useState<GeoTerm[]>([]);
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
 
-  const cities = state ? findCentre.citiesByState[state] ?? [] : [];
+  /* ---- Load states once ---- */
+  useEffect(() => {
+    fetch("/api/clinics/states", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : { states: [] }))
+      .then((d: { states?: GeoTerm[] }) => setStates(d.states ?? []))
+      .catch(() => setStates([]));
+  }, []);
+
+  /* ---- Load cities whenever the state changes ---- */
+  useEffect(() => {
+    if (!state) {
+      setCities([]);
+      return;
+    }
+    let cancelled = false;
+    fetch(`/api/clinics/cities?state=${encodeURIComponent(state)}`, { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : { cities: [] }))
+      .then((d: { cities?: GeoTerm[] }) => !cancelled && setCities(d.cities ?? []))
+      .catch(() => !cancelled && setCities([]));
+    return () => {
+      cancelled = true;
+    };
+  }, [state]);
 
   return (
     <section id="programs" className=" py-10 lg:py-16 px-5 sm:px-8">
@@ -33,20 +59,23 @@ export default function FindCentre() {
 
             <div className="mt-7 relative z-20 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5">
               <div className="flex flex-col gap-3 sm:flex-row">
-                <SelectField
+                <SearchSelect
                   label="Select State"
+                  icon={<MapPin className="h-4 w-4" />}
                   value={state}
-                  options={findCentre.states}
+                  options={states.map((s) => ({ value: s.slug, label: s.name }))}
+                  disabled={!states.length}
                   onChange={(v) => {
                     setState(v);
                     setCity("");
                   }}
                 />
-                <SelectField
+                <SearchSelect
                   label="Select City"
+                  icon={<Building2 className="h-4 w-4" />}
                   value={city}
-                  options={cities}
-                  disabled={!state}
+                  options={cities.map((c) => ({ value: c.slug, label: c.name }))}
+                  disabled={!state || !cities.length}
                   onChange={setCity}
                 />
               </div>
@@ -78,38 +107,5 @@ export default function FindCentre() {
         </div>
       </div>
     </section>
-  );
-}
-
-function SelectField({
-  label,
-  value,
-  options,
-  onChange,
-  disabled,
-}: {
-  label: string;
-  value: string;
-  options: { name: string; value: string }[];
-  onChange: (v: string) => void;
-  disabled?: boolean;
-}) {
-  return (
-    <div className="relative w-full">
-      <select
-        value={value}
-        disabled={disabled}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full appearance-none rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 outline-none focus:border-brand-purple disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-400"
-      >
-        <option value="">{label}</option>
-        {options.map((o) => (
-          <option key={o.value} value={o.value}>
-            {o.name}
-          </option>
-        ))}
-      </select>
-      <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-    </div>
   );
 }

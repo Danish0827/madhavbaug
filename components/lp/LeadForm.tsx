@@ -91,7 +91,7 @@ export default function LeadForm({
         autoComplete="off"
         className="hidden"
       />
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
+      <div className="flex w-full flex-col gap-4 lg:flex-row lg:items-center">
         {/* <div className="flex flex-col gap-4 lg:flex lg:flex-row"> */}
         <Field
           name="name"
@@ -106,7 +106,7 @@ export default function LeadForm({
           required
         />
         {/* </div> */}
-        <div className="flex-1">
+        <div className="w-full">
           <input
             id="lead-pin"
             name="pin"
@@ -114,11 +114,11 @@ export default function LeadForm({
             inputMode="numeric"
             maxLength={6}
             placeholder="PIN Code (optional)"
-            className="w-full rounded-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition-colors placeholder:text-gray-400 hover:border-brand-purple/50 focus:border-brand-purple focus:ring-4 focus:ring-brand-purple/10"
+           className="w-full rounded-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition-colors placeholder:text-gray-400 hover:border-brand-purple/50 focus:border-brand-purple focus:ring-4 focus:ring-brand-purple/10"
           />
         </div>
 
-        <div className="flex items-center ">
+        <div className="flex items-center shrink-0">
           <button
             type="submit"
             disabled={status === "submitting"}
@@ -168,7 +168,7 @@ function Field({
   required?: boolean;
 }) {
   return (
-    <div>
+  <div className="w-full">
       {/* <label htmlFor={`lead-${name}`} className="mb-1.5 block text-sm font-medium text-ink">
         {label} {required && <span className="text-brand-purple">*</span>}
       </label> */}

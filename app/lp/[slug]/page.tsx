@@ -127,14 +127,14 @@ export default async function LandingPage({ params }: Params) {
         {/* ---------- Why Choose (gradient card + image) ---------- */}
         <section id="why-choose-us" className="scroll-mt-24 bg-white px-5 pb-8 sm:px-8 lg:px-10 lg:pb-10">
           <div className="mx-auto grid w-full container items-stretch gap-5 lg:grid-cols-[55%_45%] lg:gap-0">
-            <div className="flex flex-col justify-center rounded-4xl bg-gradient-to-br from-[#006589] to-[#3D4281] p-8 text-white sm:p-10 lg:rounded-r-none lg:rounded-l-4xl lg:p-12">
+            <div className="flex order-2 lg:order-1 flex-col justify-center rounded-4xl bg-gradient-to-br from-[#006589] to-[#3D4281] p-8 text-white sm:p-10 lg:rounded-r-none lg:rounded-l-4xl lg:p-12">
               <SectionLabel tone="light">{why.why_choose_title}</SectionLabel>
               <h2 className="font-display mt-4 text-2xl leading-snug sm:text-[30px]">{why.why_choose_main_title}</h2>
               <div className={`mt-5 ${PROSE_LIGHT}`} dangerouslySetInnerHTML={{ __html: why.why_choose_information }} />
               {why.why_choose_button?.title && <BookButton label={why.why_choose_button.title} light />}
             </div>
             {why.why_choose_image?.url && (
-              <div className="relative h-full lg:h-80 overflow-hidden rounded-4xl lg:h-auto lg:rounded-l-none lg:rounded-r-4xl">
+              <div className="relative order-1 lg:order-2 h-full lg:h-80 overflow-hidden rounded-4xl lg:h-auto lg:rounded-l-none lg:rounded-r-4xl">
                 <Image src={why.why_choose_image.url} alt={why.why_choose_title || ""} width={1000} height={1000} className="object-cover lg:h-200 xl:h-160  object-center"  />
               </div>
             )}
@@ -154,7 +154,7 @@ export default async function LandingPage({ params }: Params) {
                 <SectionLabel>{ob.obesity_title}</SectionLabel>
                 <h2 className="font-display mt-4 text-2xl text-ink lg:text-[32px]">{ob.obesity_main_title}</h2>
                 <div
-                  className={`mt-5 ${PROSE} [&_ul]:grid [&_ul]:grid-cols-2 [&_ul]:gap-x-6`}
+                  className={`mt-5 ${PROSE} [&_ul]:lg:grid [&_ul]:grid-cols-2 [&_ul]:gap-x-6`}
                   dangerouslySetInnerHTML={{ __html: ob.obesity_information }}
                 />
               </div>

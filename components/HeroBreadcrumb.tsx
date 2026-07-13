@@ -58,7 +58,7 @@ export default function HeroBreadcrumb({
                 />
                 <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-indigo-deep via-blue-deep/95 to-transparent lg:hidden" />
                 <div className="absolute inset-0">
-                    <div className="container mx-auto flex h-full items-end px-5 pb-20 lg:pb-30 sm:px-8 lg:items-center lg:px-20 lg:pb-0 lg:mt-10 xl:mt-10">
+                    <div className="container mx-auto flex h-full items-end px-5 pb-15 lg:pb-30 sm:px-8 lg:items-center lg:px-20 lg:pb-0 lg:mt-10 xl:mt-10">
                         <div className="max-w-lg xl:max-w-2xl text-white lg:ml-auto">
                             <h1 className="font-display text-2xl leading-tight sm:text-3xl lg:text-xl xl:text-[40px]">
                                 {heroTitle}
