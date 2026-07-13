@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Search, X, SlidersHorizontal, PackageX } from "lucide-react";
+import { Search, X, PackageX, LayoutGrid } from "lucide-react";
 import type { Product, ProductCategory } from "@/lib/products";
 import ProductCard from "./ProductCard";
+import SearchSelect from "../ui/SearchSelect";
 
 const PAGE_SIZE = 12;
 
@@ -59,15 +60,22 @@ export default function ProductsBrowser({
 
   return (
     <div className="mx-auto w-full container">
-      {/* ---------- Search ---------- */}
-      <div className="mx-auto mb-8 flex max-w-xl items-center">
+      {/* ---------- Category dropdown + search ---------- */}
+      <div className="mb-8 grid gap-3 sm:grid-cols-[minmax(0,280px)_1fr]">
+        <SearchSelect
+          label="All Categories"
+          icon={<LayoutGrid className="h-4 w-4" />}
+          value={active}
+          options={categories.map((c) => ({ value: c.slug, label: `${c.name} (${c.count})` }))}
+          onChange={setActive}
+        />
         <div className="relative w-full">
           <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-purple" />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search products..."
-            className="h-12 w-full rounded-full border border-gray-200 bg-white pl-11 pr-10 text-sm text-gray-700 shadow-sm outline-none transition-colors placeholder:text-gray-400 hover:border-brand-purple/50 focus:border-brand-purple focus:ring-4 focus:ring-brand-purple/10"
+            className="h-[45px] w-full rounded-full border border-gray-200 bg-white pl-11 pr-10 text-sm text-gray-700 shadow-sm outline-none transition-colors placeholder:text-gray-400 hover:border-brand-purple/50 focus:border-brand-purple focus:ring-4 focus:ring-brand-purple/10"
           />
           {search && (
             <button
@@ -79,23 +87,6 @@ export default function ProductsBrowser({
               <X className="h-3.5 w-3.5" />
             </button>
           )}
-        </div>
-      </div>
-
-      {/* ---------- Category pills ---------- */}
-      <div className="mb-8 flex items-center gap-2">
-        <SlidersHorizontal className="hidden h-4 w-4 shrink-0 text-gray-400 sm:block" />
-        <div className="thin-scroll flex gap-2 overflow-x-auto pb-1">
-          <CategoryPill label="All Products" active={!active} onClick={() => setActive("")} />
-          {categories.map((c) => (
-            <CategoryPill
-              key={c.id}
-              label={c.name}
-              count={c.count}
-              active={active === c.slug}
-              onClick={() => setActive(c.slug)}
-            />
-          ))}
         </div>
       </div>
 
@@ -152,37 +143,3 @@ export default function ProductsBrowser({
   );
 }
 
-function CategoryPill({
-  label,
-  count,
-  active,
-  onClick,
-}: {
-  label: string;
-  count?: number;
-  active: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-        active
-          ? "border-brand-purple bg-brand-purple text-white"
-          : "border-gray-200 bg-white text-gray-600 hover:border-brand-purple/50 hover:text-brand-purple"
-      }`}
-    >
-      {label}
-      {typeof count === "number" && (
-        <span
-          className={`rounded-full px-1.5 text-[11px] ${
-            active ? "bg-white/20 text-white" : "bg-surface-lav text-gray-500"
-          }`}
-        >
-          {count}
-        </span>
-      )}
-    </button>
-  );
-}

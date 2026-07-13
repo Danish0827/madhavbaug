@@ -12,6 +12,7 @@ import TreatmentTabs from "@/components/hospital/TreatmentTabs";
 import PillarsCarousel from "@/components/hospital/PillarsCarousel";
 import FacilitiesCarousel from "@/components/hospital/FacilitiesCarousel";
 import { fetchHospitalBySlug } from "@/lib/hospitals";
+import HeroBreadcrumb from "@/components/HeroBreadcrumb";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -45,6 +46,23 @@ export default async function HospitalPage({ params }: Params) {
     <>
       <Navbar />
       <main>
+         <HeroBreadcrumb
+                  image={h?.banner?.image?.url ? h?.banner?.image?.url : "/assets/images/breadcrump/banner-1.webp"}
+                  imageAlt={h.banner.bottomTitle}
+                  heroTitle={h.banner.bottomTitle}
+                  heroDescription= {h.banner.shortDescription}
+                  pageTitle={h.banner.bottomTitle}
+                  breadcrumbs={[
+                    { label: "Home", href: "/" },
+                    { label: "Hospitals", href: '/hospitals' },
+                    { label: h.banner.bottomTitle },
+                  ]}
+                  primaryButton={{
+                    label: h.banner.button?.title || "Book a Consultation",
+                    href: LOCATOR,
+                  }}
+                  secondaryButton={null}
+                />
         {/* ---------- Hero ---------- */}
         <section className="relative">
           <div className="relative min-h-[460px] overflow-hidden bg-brand-gradient lg:min-h-[560px]">
