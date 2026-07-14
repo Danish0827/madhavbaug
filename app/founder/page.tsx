@@ -114,8 +114,8 @@ export default function FounderPage() {
         {/* ---------- Bridging (image left + text right) ---------- */}
         <section className="px-5 py-14 sm:px-8 lg:px-20 lg:py-20">
           <div className="mx-auto grid w-full container items-center gap-10 lg:grid-cols-2">
-            <div className="relative order-2 aspect-[590/482] overflow-hidden rounded-[30px] ring-1 ring-black/5 lg:order-1">
-              <Image src="/assets/founder/bridging.png" alt="Bridging modern medicine and Ayurveda" fill className="object-cover" sizes="(max-width:1024px) 100vw, 590px" />
+            <div className="relative order-2 w-full xl:w-[90%] mx-auto h-full overflow-hidden rounded-[30px] ring-1 ring-black/5 lg:order-1">
+              <Image src="/assets/founder/bridging.png" alt="Bridging modern medicine and Ayurveda" width={1000} height={1000} className="object-cover w-full h-full" />
             </div>
             <div className="order-1 lg:order-2">
               <SectionLabel>Academic Background &amp; The &ldquo;Ideomedical&rdquo; Concept</SectionLabel>

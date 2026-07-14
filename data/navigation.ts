@@ -200,7 +200,7 @@ export const lpNav:any  = [
     href: "#why-madhavbaug",   
   },
   {
-    label: "Heart Assessment",
+    label: "Doctor-Led Assessment",
     href: "#heart-assessment",
   },
   {
