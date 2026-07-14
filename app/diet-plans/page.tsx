@@ -10,6 +10,7 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import PageBanner from "@/components/PageBanner";
 import FaqSection from "@/components/FaqSection";
 import { dietHero, dietOverview, dietKits, whyItWorks, dietFaqs, type DietKit } from "@/data/dietPlans";
+import { howItWorks } from "@/data/powermap";
 
 export const metadata: Metadata = {
   title: "Personalized Diet Kits & Plans | Madhavbaug",
@@ -23,29 +24,32 @@ function ConsultButton({ label = "Consult a Madhavbaug expert", href = CONSULT_H
   return (
     <Link
       href={href}
-      className="btn-gradient inline-flex w-fit items-center gap-2 rounded-full py-3 pr-2.5 pl-5 text-sm font-medium text-white shadow-md transition-shadow hover:shadow-lg"
+      className="inline-flex items-center group"
     >
-      {label}
-      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
-        <ArrowUpRight className="h-4 w-4" />
+      <span className="btn-gradient text-white group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium  shadow-lg">
+        {label}
+      </span>
+      <span className="flex  w-fit h-10 items-center justify-center rounded-full bg-white/20">
+        <ArrowUpRight className="font-thin w-full h-full p-2.5 rounded-full btn-gradient text-white group-hover:rotate-45 group-hover:shadow-xl duration-300 shadow-lg" />
       </span>
     </Link>
+
   );
 }
 
 function DietKitCard({ kit }: { kit: DietKit }) {
   const media = (
-    <div className="flex flex-col gap-4 lg:h-full">
+    <div className="flex flex-col gap-4 w-full lg:h-full order-1 lg:order-none">
       {kit.images.map((src, i) => (
-        <div key={i} className="relative min-h-56 flex-1 overflow-hidden rounded-[24px]">
-          <Image src={src} alt={kit.title} fill className="object-cover" sizes="(max-width:1024px) 100vw, 460px" />
+        <div key={i} className="relative h-full w-full flex-1 overflow-hidden rounded-4xl">
+          <Image src={src} alt={kit.title} width={1000} height={1000} className="object-cover h-full w-full" />
         </div>
       ))}
     </div>
   );
 
   const info = (
-    <div className="flex flex-col p-7 sm:p-9">
+    <div className="flex flex-col rounded-4xl p-7 sm:p-9 bg-white order-2 lg:order-none">
       <h3 className="font-display bg-gradient-to-r from-brand-purple-soft to-brand-purple bg-clip-text text-xl text-transparent sm:text-2xl">
         {kit.title}
       </h3>
@@ -78,16 +82,16 @@ function DietKitCard({ kit }: { kit: DietKit }) {
   );
 
   return (
-    <article className="grid overflow-hidden rounded-[30px] bg-white shadow-sm ring-1 ring-black/5 lg:grid-cols-[460px_1fr]">
+    <article className={`grid overflow-hidden rounded-4xl gap-5 ring-black/5 ${kit.imageSide === "left" ? "lg:grid-cols-[460px_1fr]" : "lg:grid-cols-[1fr_460px]"}`}>
       {kit.imageSide === "left" ? (
         <>
-          <div className="p-5 lg:p-6">{media}</div>
+          <div className="">{media}</div>
           {info}
         </>
       ) : (
         <>
-          <div className="order-first p-7 sm:p-9 lg:order-last lg:col-start-2">{info}</div>
-          <div className="p-5 lg:col-start-1 lg:row-start-1 lg:p-6">{media}</div>
+          {info}
+          <div className="">{media}</div>
         </>
       )}
     </article>
@@ -107,10 +111,10 @@ export default function DietPlansPage() {
         />
 
         {/* ---------- Overview ---------- */}
-        <section className="px-5 pt-16 pb-14 sm:px-8 lg:px-20 lg:pt-20">
+        <section className="px-5 pt-10 pb-16 sm:px-8 lg:px-20 lg:pt-20">
           <div className="mx-auto grid w-full container items-center gap-10 lg:grid-cols-2">
-            <div className="relative h-72 w-full overflow-hidden rounded-[28px] shadow-sm ring-1 ring-black/5 lg:h-[420px]">
-              <Image src={dietOverview.image} alt="" fill className="object-cover" sizes="(max-width:1024px) 100vw, 600px" />
+            <div className="relative h-full w-full lg:w-[90%] mx-auto overflow-hidden rounded-[28px] shadow-sm  ring-black/5 ">
+              <Image src={dietOverview.image} alt="" width={1000} height={1000} className="object-cover" />
             </div>
             <div>
               <SectionLabel>{dietOverview.eyebrow}</SectionLabel>
@@ -125,7 +129,7 @@ export default function DietPlansPage() {
         </section>
 
         {/* ---------- Madhavbaug Diet Kits ---------- */}
-        <section className="bg-surface-lav px-5 py-14 sm:px-8 lg:px-20 lg:py-20">
+        <section className="bg-gradient-to-br from-[#006589]/10 to-[#3d4281]/10 px-5 py-14 sm:px-8 lg:px-20 lg:py-20">
           <div className="mx-auto w-full container">
             <div className="mx-auto max-w-3xl text-center">
               <div className="flex justify-center">
@@ -144,8 +148,8 @@ export default function DietPlansPage() {
         {/* ---------- Why Madhavbaug Diets Work ---------- */}
         <section className="px-5 py-14 sm:px-8 lg:px-20 lg:py-20">
           <div className="mx-auto grid w-full container items-center gap-10 lg:grid-cols-2">
-            <div className="relative order-2 h-72 w-full overflow-hidden rounded-[28px] shadow-sm ring-1 ring-black/5 lg:order-1 lg:h-[460px]">
-              <Image src={whyItWorks.image} alt="" fill className="object-cover" sizes="(max-width:1024px) 100vw, 600px" />
+            <div className="relative order-2 h-full w-full xl:w-[90%] mx-auto overflow-hidden rounded-[28px] shadow-sm ring-1 ring-black/5 lg:order-1">
+              <Image src={whyItWorks.image} alt="" width={1000} height={1000} className="object-cover" />
             </div>
             <div className="order-1 lg:order-2">
               <SectionLabel>{whyItWorks.eyebrow}</SectionLabel>
@@ -180,7 +184,7 @@ export default function DietPlansPage() {
         <FaqSection
           items={dietFaqs}
           title="Common Questions About Madhavbaug's Diet Kits"
-          className="bg-surface-lav"
+          className=""
         />
 
         <FinalCTA />

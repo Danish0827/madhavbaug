@@ -20,6 +20,7 @@ export default function SearchSelect({
   required,
   icon,
   searchable = true,
+  clearable = true,
 }: {
   label: string;
   value: string;
@@ -29,6 +30,7 @@ export default function SearchSelect({
   required?: boolean;
   icon?: React.ReactNode;
   searchable?: boolean;
+  clearable?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -116,7 +118,7 @@ export default function SearchSelect({
         <span className={`flex-1 truncate ${selected ? "text-gray-800" : "text-gray-400"}`}>
           {selected ? selected.label : `${label}${required ? " *" : ""}`}
         </span>
-        {selected && !disabled ? (
+        {selected && !disabled && clearable ? (
           <span
             role="button"
             tabIndex={-1}

@@ -46,7 +46,7 @@ export default function LocateCentreBand() {
 
   return (
     <section className="px-5 py-10 sm:px-8 lg:px-20 lg:py-14">
-      <div className="mx-auto grid w-full container overflow-hidden rounded-[30px] bg-gradient-to-br from-[#6f58a5]/[0.08] to-[#892fac]/[0.08] ring-1 ring-brand-purple/10 lg:grid-cols-2">
+      <div className="mx-auto grid w-full container rounded-[30px] bg-gradient-to-br from-[#6f58a5]/[0.08] to-[#892fac]/[0.08] ring-1 ring-brand-purple/10 lg:grid-cols-2">
         {/* Left: copy + finder card */}
         <div className="p-7 sm:p-10">
           <span className="inline-flex items-center gap-2 text-base font-medium text-eyebrow">
@@ -55,7 +55,6 @@ export default function LocateCentreBand() {
           <h2 className="font-display mt-3 max-w-md text-2xl leading-snug text-ink lg:text-[30px]">
             Worried About Your Health? Talk to a Madhavbaug Expert
           </h2>
-
           <div className="mt-6 rounded-[24px] border border-brand-purple/30 bg-white/80 p-5">
             <div className="grid gap-3 sm:grid-cols-2">
               <SearchSelect
@@ -96,9 +95,10 @@ export default function LocateCentreBand() {
           <Image
             src="/assets/doctors/locate-right.png"
             alt="Consult a Madhavbaug expert"
-            fill
+            width={1600}
+            height={1600}
             className="object-cover"
-            sizes="(max-width:1024px) 100vw, 720px"
+           
           />
         </div>
       </div>

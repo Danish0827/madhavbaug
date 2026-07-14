@@ -6,6 +6,8 @@ import SiteFooter from "@/components/SiteFooter";
 import SectionLabel from "@/components/ui/SectionLabel";
 import PageBanner from "@/components/PageBanner";
 import RiskCalculator from "@/components/health/RiskCalculator";
+import ReversibilityScore from "@/components/health/ReversibilityScore";
+import { REVERSIBILITY_PATIENT_LABEL } from "@/lib/reversibility";
 
 export const metadata: Metadata = {
   title: "Health Risk Calculator | Madhavbaug",
@@ -44,7 +46,6 @@ export default function HealthRiskCalculatorPage() {
           title="Health Risk Calculator"
           description="Answer a few quick questions and get an instant, weighted estimate of your cardio-metabolic health risk - based on your BMI, blood pressure, blood sugar, lifestyle and family history."
         />
-
         {/* ---------- Calculator ---------- */}
         <section className="px-5 pt-16 pb-14 sm:px-8 lg:px-10 lg:pt-20">
           <div className="mx-auto mb-10 max-w-3xl text-center">
@@ -63,7 +64,7 @@ export default function HealthRiskCalculatorPage() {
         </section>
 
         {/* ---------- Understanding your score ---------- */}
-        <section className="bg-surface-lav px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
+        <section className="px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
           <div className="mx-auto w-full container">
             <div className="mx-auto max-w-3xl text-center">
               <div className="flex justify-center">
@@ -112,6 +113,24 @@ export default function HealthRiskCalculatorPage() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* ---------- Diabetes Reversibility Score ---------- */}
+        <section className="px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
+          <div className="mx-auto mb-10 max-w-3xl text-center">
+            <div className="flex justify-center">
+              <SectionLabel>Reversibility Score</SectionLabel>
+            </div>
+            <h2 className="font-display mt-4 text-2xl text-ink lg:text-[32px]">
+              Diabetes Reversibility Score
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-gray-600">
+              An evidence-based estimate built from the real 90-day outcomes of{" "}
+              {REVERSIBILITY_PATIENT_LABEL} Madhavbaug patients - enter your HbA1c to see your
+              potential for HbA1c improvement.
+            </p>
+          </div>
+          <ReversibilityScore />
         </section>
 
         <FinalCTA />

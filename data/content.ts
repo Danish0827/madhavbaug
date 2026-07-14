@@ -185,6 +185,7 @@ export type VideoStory = {
   condition: string;
   dataProof: string;
   image: string;
+  video: string;
 };
 
 export type ReviewStory = {
@@ -208,6 +209,7 @@ export const successStories = {
       condition: "Type 2 Diabetes",
       dataProof: "HbA1c reduced from 9.2% to 6.1% within 6 months",
       image: "/assets/testi-1.png",
+      video: "https://www.youtube.com/embed/8g8IlEGbv3o"
     },
     {
       name: "Kiran Thakkar",
@@ -217,6 +219,7 @@ export const successStories = {
       dataProof:
         "12 kg weight loss within the first 3 months, 15 kg weight loss in 5 months",
       image: "/assets/testi-2.png",
+      video: "https://www.youtube.com/embed/8g8IlEGbv3o"
     },
     {
       name: "Smitha Mhatre",
@@ -225,23 +228,24 @@ export const successStories = {
       condition: "Type 2 Diabetes",
       dataProof: "Blood sugar stabilised; off insulin within 4 months",
       image: "/assets/testi-3.png",
+      video: "https://www.youtube.com/embed/8g8IlEGbv3o"
     },
-    {
-      name: "Rajesh Patil",
-      age: 52,
-      city: "Pune",
-      condition: "Heart Disease",
-      dataProof: "Ejection fraction improved from 35% to 55% in 8 months",
-      image: "/assets/testi-4.png",
-    },
-    {
-      name: "Anita Deshmukh",
-      age: 48,
-      city: "Nashik",
-      condition: "Hypertension",
-      dataProof: "BP stabilised at 120/80 without daily medication",
-      image: "/assets/testi-5.png",
-    },
+    // {
+    //   name: "Rajesh Patil",
+    //   age: 52,
+    //   city: "Pune",
+    //   condition: "Heart Disease",
+    //   dataProof: "Ejection fraction improved from 35% to 55% in 8 months",
+    //   image: "/assets/testi-4.png",
+    // },
+    // {
+    //   name: "Anita Deshmukh",
+    //   age: 48,
+    //   city: "Nashik",
+    //   condition: "Hypertension",
+    //   dataProof: "BP stabilised at 120/80 without daily medication",
+    //   image: "/assets/testi-5.png",
+    // },
   ] as VideoStory[],
   reviews: [
     {
@@ -271,24 +275,24 @@ export const successStories = {
       review:
         "Lost 14 kg in 5 months with their BMR-based diet and guided exercise. No crash dieting — just a scientific, sustainable routine.",
     },
-    {
-      name: "Vaishali More",
-      age: 39,
-      city: "Badlapur",
-      condition: "Hypertension",
-      rating: 5,
-      review:
-        "My BP used to stay above 150 even with tablets. After the Madhavbaug program it is stable, and I feel calmer and more energetic.",
-    },
-    {
-      name: "Dilip Sawant",
-      age: 61,
-      city: "Pune",
-      condition: "Heart Disease",
-      rating: 5,
-      review:
-        "The doctors explained every report and tracked my progress on the app. My stress test results improved beyond what I expected at this age.",
-    },
+    // {
+    //   name: "Vaishali More",
+    //   age: 39,
+    //   city: "Badlapur",
+    //   condition: "Hypertension",
+    //   rating: 5,
+    //   review:
+    //     "My BP used to stay above 150 even with tablets. After the Madhavbaug program it is stable, and I feel calmer and more energetic.",
+    // },
+    // {
+    //   name: "Dilip Sawant",
+    //   age: 61,
+    //   city: "Pune",
+    //   condition: "Heart Disease",
+    //   rating: 5,
+    //   review:
+    //     "The doctors explained every report and tracked my progress on the app. My stress test results improved beyond what I expected at this age.",
+    // },
   ] as ReviewStory[],
 };
 

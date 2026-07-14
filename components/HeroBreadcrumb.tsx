@@ -46,7 +46,7 @@ export default function HeroBreadcrumb({
                     alt={imageAlt}
                     width={2500}
                     height={2000}
-                    
+
                     className="object-cover  hidden lg:block object-left lg:object-center w-full h-120 lg:h-full"
                 />
                 <Image
@@ -67,7 +67,7 @@ export default function HeroBreadcrumb({
                                 className="mt-3 xl:mt-5 [&_ul]:hidden [&_ul]:lg:flex text-white [&_p]:mb-6 [&_p]:text-base [&_p]:lg:text-sm [&_p]:xl:text-base [&_p]:leading-7 [&_p]:text-white/90  [&_ul]:flex-wrap [&_ul]:gap-4 [&_ul]:list-none [&_ul]:p-0 [&_ul]:m-0 [&_li]:flex [&_li]:items-center [&_li]:gap-2 [&_li]:rounded-full [&_li]:bg-white/15 [&_li]:backdrop-blur-sm [&_li]:px-4 [&_li]:py-2 [&_li]:lg:py-1.5 [&_li]:xl:py-3 [&_li]:lg:text-xs [&_li]:xl:text-sm [&_li]:text-sm [&_li]:font-medium [&_li]:text-white [&_li]:before:content-['✓'] [&_li]:before:flex [&_li]:before:items-center [&_li]:before:justify-center [&_li]:before:w-4 [&_li]:before:h-4 [&_li]:before:text-white"
                                 dangerouslySetInnerHTML={{ __html: heroDescription }}
                             />
-                            <div className="mt-6 flex flex-wrap items-center gap-3 xl:mt-8 lg:gap-4">
+                            <div className={pageTitle === "Book an Appointment" ? "mt-6 flex flex-wrap justify-center lg:justify-start items-center gap-3 xl:mt-8 lg:gap-4" : "mt-6 flex flex-wrap items-center gap-3 xl:mt-8 lg:gap-4"}>
                                 {primaryButton && (
                                     <Link
                                         href={primaryButton.href}
@@ -133,7 +133,7 @@ export default function HeroBreadcrumb({
                             </div>
                         </>
                     ) :
-                        <h2 className="font-display text-2xl text-ink sm:text-3xl lg:text-[40px] pb-10">
+                        <h2 className="font-display text-2xl text-ink sm:text-3xl lg:text-[40px] pb-10 lg:pb-16">
                             {pageTitle}
                         </h2>}
                 </div>

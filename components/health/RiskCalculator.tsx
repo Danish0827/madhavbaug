@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, RotateCcw, Activity as ActivityIcon, Info } from "lucide-react";
+import SearchSelect from "@/components/ui/SearchSelect";
 import {
   calculateRisk,
   riskMeta,
@@ -90,6 +91,7 @@ export default function RiskCalculator() {
           <NumberField label="Fasting Blood Sugar" unit="mg/dL" value={f.sugar} onChange={(v) => set("sugar", v)} placeholder="e.g. 110" />
           <SelectField
             label="Physical Activity"
+            clearable={false}
             value={f.activity}
             onChange={(v) => set("activity", v as Activity)}
             options={[
@@ -100,6 +102,7 @@ export default function RiskCalculator() {
           />
           <SelectField
             label="Smoking"
+            clearable={false}
             value={f.smoking}
             onChange={(v) => set("smoking", v as Smoking)}
             options={[
@@ -128,7 +131,7 @@ export default function RiskCalculator() {
       </div>
 
       {/* ---------- Result ---------- */}
-      <div className="lg:sticky lg:top-24">
+      <div className="lg:sticky scroll-mt-2 lg:top-24">
         {!result ? (
           <div className="flex min-h-[420px] flex-col items-center justify-center rounded-[28px] bg-surface-lav p-8 text-center">
             <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-brand-purple shadow-sm">
@@ -191,7 +194,6 @@ function ResultPanel({ result }: { result: ReturnType<typeof calculateRisk> }) {
         )}
         <p className="mt-3 text-center text-sm leading-relaxed text-gray-600">{meta.note}</p>
       </div>
-
       {/* Breakdown */}
       <div className="mt-6 border-t border-gray-100 pt-5">
         <p className="mb-3 text-sm font-semibold text-ink">Score Breakdown</p>
@@ -257,7 +259,7 @@ function NumberField({
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
-        className="h-12 w-full rounded-full border border-gray-200 bg-white px-4 text-sm text-gray-700 outline-none transition-colors placeholder:text-gray-400 hover:border-brand-purple/50 focus:border-brand-purple focus:ring-4 focus:ring-brand-purple/10"
+        className="h-[45px] w-full rounded-full border border-gray-200 bg-white px-4 text-sm text-gray-700 outline-none transition-colors placeholder:text-gray-400 hover:border-brand-purple/50 focus:border-brand-purple focus:ring-4 focus:ring-brand-purple/10"
       />
     </div>
   );
@@ -269,29 +271,28 @@ function SelectField({
   value,
   onChange,
   options,
+  clearable = true,
 }: {
   label: string;
   hint?: string;
   value: string;
   onChange: (v: string) => void;
   options: { value: string; label: string }[];
+  clearable?: boolean;
 }) {
   return (
     <div>
       <label className="mb-1.5 block text-sm font-medium text-ink">
         {label} {hint && <span className="font-normal text-gray-400">({hint})</span>}
       </label>
-      <select
+      <SearchSelect
+        label={`Select ${label}`}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="h-12 w-full rounded-full border border-gray-200 bg-white px-4 text-sm text-gray-700 outline-none transition-colors hover:border-brand-purple/50 focus:border-brand-purple focus:ring-4 focus:ring-brand-purple/10"
-      >
-        {options.map((o) => (
-          <option key={o.value} value={o.value}>
-            {o.label}
-          </option>
-        ))}
-      </select>
+        options={options.filter((o) => o.value !== "")}
+        onChange={onChange}
+        searchable={false}
+        clearable={clearable}
+      />
     </div>
   );
 }

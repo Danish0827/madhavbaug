@@ -16,6 +16,7 @@ import WhyChooseCarousel from "@/components/treatment/WhyChooseCarousel";
 import PatientJourney from "@/components/treatment/PatientJourney";
 import { fetchTreatmentBySlug } from "@/lib/treatments";
 import PageBanner from "@/components/PageBanner";
+import Image from "next/image";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -35,7 +36,7 @@ const TABS: TabItem[] = [
 const PROSE =
   "text-sm leading-relaxed text-gray-600 [&_p]:mb-3 [&_ul]:my-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:my-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-2 [&_strong]:font-semibold [&_strong]:text-ink [&_a]:text-brand-purple [&_a]:underline";
 
-const SECTION = "scroll-mt-40 px-5 sm:px-8 lg:px-20";
+const SECTION = "scroll-mt-40 ";
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
@@ -90,15 +91,17 @@ export default async function TreatmentPage({ params }: Params) {
         <StickyTabs tabs={TABS} />
 
         {/* ---------- Overview ---------- */}
-        <section id="overview" className={`${SECTION} py-14 lg:py-20`}>
+        <section id="overview" className={`${SECTION} py-10 lg:py-20`}>
           <div className="mx-auto grid w-full container items-center gap-10 lg:grid-cols-2">
             {(t.eligibility.image || t.conditions.image) && (
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[32px] ring-1 ring-black/5">
+              <div className="relative w-full lg:w-[90%] mx-auto overflow-hidden rounded-4xl ring-1 ring-black/5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={t.eligibility.image || t.conditions.image}
                   alt={t.title}
                   className="h-full w-full object-cover"
+                  width={1000}
+                  height={1000}
                   loading="lazy"
                 />
               </div>
@@ -122,9 +125,9 @@ export default async function TreatmentPage({ params }: Params) {
         </section>
 
         {/* ---------- Conditions ---------- */}
-        <section id="conditions" className={`${SECTION} bg-surface-lav py-14 lg:py-20`}>
+        <section id="conditions" className={`${SECTION}  py-10 lg:py-20`}>
           <div className="mx-auto w-full container">
-            <div className="max-w-3xl">
+            <div className="">
               <SectionLabel>{t.conditions.eyebrow}</SectionLabel>
               <h2 className="font-display mt-4 text-2xl leading-snug text-ink lg:text-[32px]">
                 {t.conditions.title}

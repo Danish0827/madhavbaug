@@ -34,7 +34,7 @@ export default function SuccessStories() {
     <section className="relative overflow-hidden bg-white py-16 lg:py-24">
       {/* Heart watermark */}
       <div className="pointer-events-none absolute right-50 top-10 w-full h-full text-brand-purple/5" >
-      <Image
+        <Image
           src="/assets/blue-water.webp"
           alt="Madhavbaug"
           width={200}
@@ -59,11 +59,10 @@ export default function SuccessStories() {
                   setTab(t);
                   trackRef.current?.scrollTo({ left: 0 });
                 }}
-                className={`rounded-full px-6 py-2 text-sm font-medium transition-colors ${
-                  tab === t
+                className={`rounded-full px-6 py-2 text-sm font-medium transition-colors ${tab === t
                     ? "btn-gradient text-white shadow"
                     : "text-gray-600 hover:text-brand-purple"
-                }`}
+                  }`}
               >
                 {t}
               </button>
@@ -75,7 +74,7 @@ export default function SuccessStories() {
         <div className="relative mt-12">
           <div
             ref={trackRef}
-            className="thin-scroll -mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-5 pb-4 sm:-mx-8 sm:px-8 lg:-mx-20 lg:px-20"
+            className=" -mx-5 grid grid-cols-3 gap-6   px-5 pb-4 sm:-mx-8 sm:px-8 lg:-mx-20 lg:px-20"
           >
             {tab === "Videos"
               ? successStories.videos.map((v) => <VideoCard key={v.name} story={v} />)
@@ -83,7 +82,7 @@ export default function SuccessStories() {
           </div>
 
           {/* Arrows */}
-          <button
+          {/* <button
             onClick={() => scrollByCard(-1)}
             aria-label="Previous"
             className="absolute -left-2 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white text-brand-purple shadow-lg ring-1 ring-black/5 transition-transform hover:scale-105 md:flex lg:-left-6"
@@ -96,21 +95,21 @@ export default function SuccessStories() {
             className="absolute -right-2 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white text-brand-purple shadow-lg ring-1 ring-black/5 transition-transform hover:scale-105 md:flex lg:-right-6"
           >
             <ChevronRight className="h-5 w-5" />
-          </button>
+          </button> */}
         </div>
 
         <div className="mt-8 flex justify-center">
-           <Link
-               href={successStories.cta.href}
-              className="inline-flex items-center group"
-            >
-              <span className="bg-transparent group-hover:bg-white/10 text-[rgb(137,47,172)] border border-[rgb(137,47,172)] group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium  shadow-lg">
-                {successStories.cta.label}
-              </span>
-              <span className="flex  w-fit h-10 items-center justify-center rounded-full border border-[rgb(137,47,172)]">
-                <ArrowUpRight className="font-thin w-full h-full p-2 rounded-full bg-transparent group-hover:bg-white/10 text-[rgb(137,47,172)] group-hover:rotate-360 group-hover:shadow-xl duration-300 shadow-lg" />
-              </span>
-            </Link>
+          <Link
+            href={successStories.cta.href}
+            className="inline-flex items-center group"
+          >
+            <span className="bg-transparent group-hover:bg-white/10 text-[rgb(137,47,172)] border border-[rgb(137,47,172)] group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium  shadow-lg">
+              {successStories.cta.label}
+            </span>
+            <span className="flex  w-fit h-10 items-center justify-center rounded-full border border-[rgb(137,47,172)]">
+              <ArrowUpRight className="font-thin w-full h-full p-2 rounded-full bg-transparent group-hover:bg-white/10 text-[rgb(137,47,172)] group-hover:rotate-360 group-hover:shadow-xl duration-300 shadow-lg" />
+            </span>
+          </Link>
         </div>
       </div>
     </section>
@@ -119,14 +118,16 @@ export default function SuccessStories() {
 
 /* ---------- Video card (image + gradient info panel) ---------- */
 function VideoCard({ story }: { story: VideoStory }) {
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   return (
     <article
-      data-card
-      className="w-[85%] shrink-0 snap-start overflow-hidden rounded-[24px] shadow-md ring-1 ring-black/5 sm:w-[400px]"
+      // onClick={() => setSelectedVideo(story.video)}
+      className="cursor-pointer shrink-0 snap-start overflow-hidden rounded-[24px] shadow-md ring-1 ring-black/5 w-full"
     >
-      <div className="relative h-52 w-full">
+      <div onClick={() => setSelectedVideo(story.video)} className="relative h-52 w-full">
         <Image src={story.image} alt={story.name} fill className="object-cover" />
         <button
+          
           aria-label={`Play ${story.name}'s story`}
           className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-brand-purple shadow-lg transition-transform hover:scale-105"
         >
@@ -140,7 +141,7 @@ function VideoCard({ story }: { story: VideoStory }) {
           className="absolute right-3 top-3 rounded bg-white/80 px-1.5 py-1"
         />
       </div>
-      <div className="bg-brand-gradient p-6 text-white">
+      <div className="bg-brand-gradient p-6 h-full text-white">
         <div className="flex items-baseline gap-3">
           <h3 className="font-display text-2xl">{story.name}</h3>
           <span className="text-sm text-white/70">
@@ -151,11 +152,37 @@ function VideoCard({ story }: { story: VideoStory }) {
           <p className="text-xs uppercase tracking-wide text-white/60">Condition</p>
           <p className="mt-0.5 text-sm font-medium">{story.condition}</p>
         </div>
-        <div className="mt-3">
+        {/* <div className="mt-3">
           <p className="text-xs uppercase tracking-wide text-white/60">Data Proof</p>
           <p className="mt-0.5 text-sm">{story.dataProof}</p>
-        </div>
+        </div> */}
       </div>
+      {selectedVideo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
+          <div className="relative w-full max-w-4xl">
+            <button
+              onClick={() => setSelectedVideo(null)}
+              className="absolute -top-10 right-0 text-white text-3xl"
+            >
+              ✕
+            </button>
+
+            <div className="aspect-video overflow-hidden rounded-xl bg-black">
+              <iframe
+                src={selectedVideo}
+                title="Story Video"
+                className="h-full w-full"
+                allow="autoplay; encrypted-media; fullscreen"
+                allowFullScreen
+              />
+            </div>
+          </div>
+          <div
+            className="fixed inset-0 -z-10"
+            onClick={() => setSelectedVideo(null)}
+          />
+        </div>
+      )}
     </article>
   );
 }
@@ -171,7 +198,7 @@ function ReviewCard({ story }: { story: ReviewStory }) {
   return (
     <article
       data-card
-      className="flex w-[85%] shrink-0 snap-start flex-col rounded-[24px] bg-surface-lav p-7 shadow-sm ring-1 ring-brand-purple/10 sm:w-[400px]"
+      className="flex shrink-0 snap-start flex-col rounded-[24px] bg-surface-lav p-7 shadow-sm ring-1 ring-brand-purple/10 w-full"
     >
       <div className="flex items-center justify-between">
         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-purple/10 text-brand-purple">
@@ -181,11 +208,10 @@ function ReviewCard({ story }: { story: ReviewStory }) {
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
               key={i}
-              className={`h-4 w-4 ${
-                i < story.rating
+              className={`h-4 w-4 ${i < story.rating
                   ? "fill-amber-400 text-amber-400"
                   : "fill-gray-200 text-gray-200"
-              }`}
+                }`}
             />
           ))}
         </div>

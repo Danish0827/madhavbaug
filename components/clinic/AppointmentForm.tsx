@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowUpRight, CheckCircle2, Phone, MessageCircle, ShieldCheck } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import SectionLabel from "@/components/ui/SectionLabel";
+import SearchSelect from "@/components/ui/SearchSelect";
 
 const CONDITIONS = [
   "Heart Disease",
@@ -102,18 +103,13 @@ export default function AppointmentForm({
                   />
                   <div>
                     <label className="mb-1.5 block text-sm font-medium text-gray-700">Condition</label>
-                    <select
+                    <SearchSelect
+                      label="Select a condition"
                       value={form.condition}
-                      onChange={(e) => set("condition", e.target.value)}
-                      className="h-[46px] w-full rounded-xl border border-gray-200 bg-white px-4 text-sm text-gray-700 outline-none transition-colors focus:border-brand-purple"
-                    >
-                      <option value="">Select a condition</option>
-                      {CONDITIONS.map((c) => (
-                        <option key={c} value={c}>
-                          {c}
-                        </option>
-                      ))}
-                    </select>
+                      options={CONDITIONS.map((c) => ({ value: c, label: c }))}
+                      onChange={(v) => set("condition", v)}
+                      searchable={false}
+                    />
                   </div>
                 </div>
                 <div>

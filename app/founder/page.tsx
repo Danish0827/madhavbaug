@@ -8,6 +8,7 @@ import FloatingActions from "@/components/FloatingActions";
 import FinalCTA from "@/components/FinalCTA";
 import SiteFooter from "@/components/SiteFooter";
 import SectionLabel from "@/components/ui/SectionLabel";
+import HeroBreadcrumb from "@/components/HeroBreadcrumb";
 
 export const metadata: Metadata = {
   title: "Dr. Rohit Sane — Founder | Madhavbaug",
@@ -41,66 +42,38 @@ export default function FounderPage() {
     <>
       <Navbar />
       <main>
+        <HeroBreadcrumb
+          image="/assets/founder/rohit.webp"
+          imageAlt="Our Founder"
+          heroTitle="Dr Rohit Madhav Sane"
+          heroDescription={`<p className="mt-3 text-lg text-white/90">
+                              Founder, Managing Director &amp; CEO, Madhavbaug
+                            </p>
+                            <p className="mt-1 text-sm font-semibold text-white">
+                              MBBS | Fellowship in Cardiac Rehabilitation (FCR)
+                            </p>
+                            <p className="mt-5 max-w-xl text-sm  text-white/80 lg:text-base">
+                              &ldquo;Our mission is to build a complete global healthcare ecosystem where Ayurveda,
+                              backed by modern scientific research, stands as a primary, safe, and effective line of
+                              treatment for chronic diseases.&rdquo;
+                            </p>`}
+          pageTitle="Our Founder"
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "Dr Rohit Madhav Sane" },
+          ]}
+          primaryButton={{
+            label: "Book a Consultation",
+            href: "/contact",
+          }}
+          secondaryButton={null}
+        />
         {/* ---------- Hero ---------- */}
-        <section className="bg-brand-gradient relative overflow-hidden pt-28 pb-40 text-white lg:pt-36 lg:pb-48">
-          <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-white/10 blur-2xl" />
-          <div className="relative mx-auto grid w-full container items-center gap-10 px-5 sm:px-8 lg:grid-cols-[0.75fr_1fr] lg:px-20">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[32px] ring-4 ring-white/20">
-              <Image src="/assets/founder/portrait.png" alt="Dr. Rohit Sane" fill className="object-cover object-top" sizes="(max-width:1024px) 100vw, 400px" priority />
-            </div>
-            <div>
-              <h1 className="font-display text-3xl leading-tight sm:text-4xl lg:text-[44px]">
-                Dr Rohit Madhav Sane
-              </h1>
-              <p className="mt-3 text-lg text-white/90">
-                Founder, Managing Director &amp; CEO, Madhavbaug
-              </p>
-              <p className="mt-2 text-sm font-semibold text-white">
-                MBBS | Fellowship in Cardiac Rehabilitation (FCR)
-              </p>
-              <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/80 lg:text-base">
-                &ldquo;Our mission is to build a complete global healthcare ecosystem where Ayurveda,
-                backed by modern scientific research, stands as a primary, safe, and effective line of
-                treatment for chronic diseases.&rdquo;
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Link
-                  href="/clinic-hospital-locator"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-brand-purple shadow-lg transition-shadow hover:shadow-xl"
-                >
-                  Book a Consultation <ArrowUpRight className="h-4 w-4" />
-                </Link>
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
-                >
-                  <FaWhatsapp className="h-4 w-4" /> Chat With Us
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Breadcrumb pill */}
-        <div className="relative z-10 mx-auto -mt-28 w-full max-w-[840px] px-4">
-          <div className="rounded-[28px] bg-white px-6 py-8 text-center shadow-[0_20px_60px_rgba(0,0,0,0.08)] sm:px-10 lg:rounded-[91px]">
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center justify-center gap-2 text-sm">
-              <Link href="/" className="text-[#7c44a8] hover:underline">Home</Link>
-              <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
-              <Link href="/about" className="text-[#7c44a8] hover:underline">Our Founders</Link>
-              <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
-              <span className="text-[#2b2b2b]">Dr Rohit Madhav Sane</span>
-            </nav>
-            <h2 className="font-display mt-3 text-3xl leading-tight text-ink sm:text-4xl lg:text-[40px]">
-              Our Founder
-            </h2>
-          </div>
-        </div>
 
         {/* ---------- The Madhavbaug Story (text left + image right) ---------- */}
-        <section className="px-5 pt-24 pb-14 sm:px-8 lg:px-20 lg:pt-28">
-          <div className="mx-auto grid w-full container items-stretch gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="rounded-[30px] bg-[#f6e6e2] p-8 sm:p-10">
+        <section className="px-3 sm:px-5 lg:px-10 ">
+          <div className="mx-auto grid w-full container items-stretch gap-5 lg:gap-0 lg:grid-cols-[55%_45%]">
+            <div style={{ backgroundImage: `url('/assets/work-2.webp')` }} className="bg-cover order-2 lg:order-1 bg-no-repeat rounded-4xl lg:rounded-none lg:rounded-l-4xl p-8 sm:p-10">
               <SectionLabel>The Genesis of Madhavbaug</SectionLabel>
               <h2 className="font-display mt-4 text-2xl leading-snug text-ink lg:text-[30px]">
                 The Madhavbaug Story
@@ -120,14 +93,20 @@ export default function FounderPage() {
                 350+ clinics &amp; hospitals, 650+ specialists, and 1,000,000+ patients.
               </p>
               <Link
-                href="/clinic-hospital-locator"
-                className="btn-gradient mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white shadow-lg transition-shadow hover:shadow-xl"
-              >
-                Book a Consultation <ArrowUpRight className="h-4 w-4" />
-              </Link>
+            href="clinic-hospital-locator"
+            className="inline-flex items-center group mt-5"
+          >
+            <span className="btn-gradient text-white group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium  shadow-lg">
+            Book a Consultation
+            </span>
+            <span className="flex  w-fit h-10 items-center justify-center rounded-full bg-white/20">
+              <ArrowUpRight className="font-thin w-full h-full p-2.5 rounded-full btn-gradient text-white group-hover:rotate-360 group-hover:shadow-xl duration-300 shadow-lg" />
+            </span>
+          </Link>
+          
             </div>
-            <div className="relative min-h-[320px] overflow-hidden rounded-[30px] ring-1 ring-black/5">
-              <Image src="/assets/founder/story.png" alt="Madhavbaug clinic team" fill className="object-cover" sizes="(max-width:1024px) 100vw, 555px" />
+            <div className="relative overflow-hidden rounded-4xl lg:rounded-none lg:rounded-r-4xl order-1 lg:order-2 ring-black/5">
+              <Image src="/assets/founder/story.png" alt="Madhavbaug clinic team" width={1000} height={1000} className="object-cover w-full h-100 lg:h-170 xl:h-150 2xl:h-120" />
             </div>
           </div>
         </section>
