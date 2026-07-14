@@ -143,7 +143,7 @@ export default async function LandingPage({ params }: Params) {
 
         {/* ---------- Obesity isn't just about weight ---------- */}
         {ob.obesity_information && (
-          <section id="heart-assessment" className="scroll-mt-24 px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
+          <section id="doctor-led-assessment" className="scroll-mt-24 px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
             <div className="mx-auto grid w-full h-full container items-center gap-10 lg:grid-cols-[45%_55%]">
               {ob.obesity_image?.url && (
                <div className="relative order-1 xl:w-4/5 h-full mx-auto overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 ">

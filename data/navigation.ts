@@ -201,7 +201,7 @@ export const lpNav:any  = [
   },
   {
     label: "Doctor-Led Assessment",
-    href: "#heart-assessment",
+    href: "#doctor-led-assessment",
   },
   {
     label: "Who Should Book",
