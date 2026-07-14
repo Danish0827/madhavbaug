@@ -197,19 +197,19 @@ export const mainNav: NavItem[] = [
 export const lpNav:any  = [
   {
     label: "Why Madhavbaug",
-    href: "#why-choose-us",   
+    href: "#why-madhavbaug",   
   },
   {
-    label: "Complete Heart Assessment",
-    href: "#heart-care-model",
+    label: "Heart Assessment",
+    href: "#heart-assessment",
   },
   {
     label: "Who Should Book",
-    href: "#eligibility",
+    href: "#who-should-book",
   },
   {
     label: "What Happens Next",
-    href: "#locator",
+    href: "#what-happens-next",
   },
   {
     label: "FAQs",
