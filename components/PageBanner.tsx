@@ -25,9 +25,8 @@ export default function PageBanner({
                 style={{ backgroundImage: `url(${backgroundImage})` }}
                 className="relative h-120 bg-cover bg-center bg-no-repeat"
             />
-
-            <div className="relative z-10 mx-auto -mt-14 -mb-10 w-full max-w-[1000px] px-4 lg:-mt-24">
-                <div className="rounded-[28px] bg-white px-6 py-8 text-center  sm:px-10 lg:rounded-[91px]">
+            <div className="relative top-8 lg:top-0 z-10 mx-auto -mb-10 -mt-14 w-full container px-4 lg:-mt-24">
+                <div className="round bg-white px-6 pt-8 text-center sm:px-10 rounded-[90px]">
                     <nav
                         aria-label="Breadcrumb"
                         className="flex items-center justify-center gap-2 text-sm"
@@ -52,11 +51,11 @@ export default function PageBanner({
                         ))}
                     </nav>
 
-                    <h1 className="font-display mt-3 text-3xl sm:text-4xl lg:text-[40px]">
+                    <h1 className="font-display mt-3 text-3xl sm:text-4xl lg:text-[40px] pb-2">
                         {title}
                     </h1>
 
-                    <p className="mx-auto mt-3 max-w-2xl text-sm text-black/70 sm:text-base">
+                    <p className="mx-auto mt-3  text-sm text-black/70 sm:text-base pb-10 lg:pb-16">
                         {description}
                     </p>
                 </div>

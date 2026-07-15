@@ -15,7 +15,7 @@ export default function MilestonesTabs({ tabs }: { tabs: MilestoneTab[] }) {
       <div
         role="tablist"
         aria-label="Award categories"
-        className="thin-scroll mx-auto mt-8 flex w-fit max-w-full items-center gap-2 overflow-x-auto rounded-full bg-gradient-to-r from-[#006589]/[0.06] to-[#3d4281]/[0.06] p-2"
+        className="mx-auto mt-8 flex w-fit max-w-full items-center gap-2 overflow-x-auto rounded-full bg-gradient-to-r from-[#006589]/[0.06] to-[#3d4281]/[0.06] p-2"
       >
         {tabs.map((t, i) => (
           <button
@@ -36,10 +36,10 @@ export default function MilestonesTabs({ tabs }: { tabs: MilestoneTab[] }) {
       </div>
 
       {/* Cards */}
-      <div className="mt-10 grid gap-6 md:grid-cols-2">
+      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:px-24">
         {cards.map((c) => (
           <article key={c.title} className="overflow-hidden rounded-[28px] shadow-sm ring-1 ring-black/5">
-            <div className="flex h-56 items-center justify-center bg-white p-6">
+            <div className="flex h-60 items-center justify-center bg-white p-6">
               {c.image ? (
                 <div className="relative h-full w-full">
                   <Image src={c.image} alt={c.title} fill className="object-contain" sizes="(max-width:768px) 100vw, 600px" />
@@ -50,7 +50,7 @@ export default function MilestonesTabs({ tabs }: { tabs: MilestoneTab[] }) {
                 </span>
               )}
             </div>
-            <div className="bg-gradient-to-br from-brand-purple/[0.08] to-brand-maroon/[0.08] p-7">
+            <div className="bg-gradient-to-br from-brand-purple/[0.08] to-brand-maroon/[0.08] p-7 h-full">
               <h3 className="font-display bg-gradient-to-r from-brand-purple-soft to-brand-purple bg-clip-text text-xl leading-snug text-transparent">
                 {c.title}
               </h3>

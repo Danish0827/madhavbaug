@@ -30,8 +30,8 @@ const founderStats = [
       "Over the last two decades, equipping thousands of Ayurvedic practitioners with specialised certifications in non-invasive chronic disease management.",
   },
   {
-    number: "",
-    title: "Global Advocacy",
+    number: "Global Advocacy",
+    title: "",
     description:
       "Actively presenting data-driven proof of heart disease and diabetes reversal to the global scientific community.",
   },

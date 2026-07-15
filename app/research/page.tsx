@@ -40,16 +40,11 @@ export default function ResearchPage() {
 
         {/* ---------- Hero stats ---------- */}
         <section className="px-5 pt-10 sm:px-8 lg:px-20">
-          <div className="mx-auto grid w-full max-w-5xl gap-4 sm:grid-cols-3">
+          <div className="mx-auto grid w-full container gap-4 sm:grid-cols-3">
             {heroStats.map((s) => (
-              <div
-                key={s.label}
-                className="flex items-center gap-4 rounded-[22px] bg-white px-6 py-5 shadow-sm ring-1 ring-black/5"
-              >
-                <p className="font-display shrink-0 text-2xl text-teal-deep lg:text-[32px]">
-                  {s.number}
-                </p>
-                <p className="text-sm font-medium leading-snug text-ink">{s.label}</p>
+              <div key={s.label} className="flex items-center gap-4 rounded-3xl bg-gradient-to-br from-[#6F58A5]/[0.06] to-[#892FAC]/[0.06] px-8 py-10 ring-1 ring-black/5">
+                <p className="font-display text-3xl text-black lg:text-4xl">{s.number}</p>
+                <p className="font-display text-base text-ink">{s.label}</p>
               </div>
             ))}
           </div>
@@ -71,21 +66,22 @@ export default function ResearchPage() {
               {researchPillars.map((p) => (
                 <article
                   key={p.title}
-                  className="flex flex-col overflow-hidden rounded-[28px] shadow-sm ring-1 ring-black/5"
+                  className="flex flex-col overflow-hidden rounded-4xl shadow-sm ring-1 ring-black/5"
                 >
-                  <div className="relative h-52 w-full">
+                  <div className="h-60 w-full">
                     <Image
                       src={p.image}
                       alt={p.title}
-                      fill
+                      width={1000}
+                      height={1000}
                       className="object-cover"
-                      sizes="(max-width:768px) 100vw, 420px"
                     />
                   </div>
-                  <div className="bg-brand-gradient flex flex-1 flex-col p-7">
+                  <div className="bg-brand-gradient flex flex-1 flex-col p-6 h-full">
                     <h3 className="font-display text-xl text-white">{p.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-white/80">{p.description}</p>
-                    <div className="mt-6 flex items-center justify-between gap-3">
+                    <div className="mt-6 flex items-center w-fit group">
+                      
                       <button
                         type="button"
                         className="rounded-full border border-white/50 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
@@ -93,7 +89,7 @@ export default function ResearchPage() {
                         Read our Research
                       </button>
                       <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/50 text-white">
-                        <ArrowUpRight className="h-4 w-4" />
+                        <ArrowUpRight className="h-4 w-4 group-hover:rotate-45 duration-300" />
                       </span>
                     </div>
                   </div>

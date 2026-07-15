@@ -3,7 +3,7 @@ import { ArrowUpRight, HeartPulse } from "lucide-react";
 import { finalCta } from "@/data/content";
 import Image from "next/image";
 
-export default function FinalCTA({ ctaHref = "/clinic-hospital-locator" }: { ctaHref?: string }) {
+export default function FinalCTA({ ctaHref = "/contact" }: { ctaHref?: string }) {
   return (
     <section className="bg-cover bg-center bg-no-repeat py-16 overflow-hidden xl:py-12" style={{ backgroundImage: "url('/assets/cta.webp')" }}>
       <div className="mx-auto w-full container">

@@ -22,12 +22,14 @@ export default function BreakthroughsCarousel({ items }: { items: Protocol[] }) 
         modules={[Navigation]}
         onSwiper={(s) => (ref.current = s)}
         spaceBetween={24}
-        slidesPerView={1.05}
+        slidesPerView={1}
+        loop={true}
         breakpoints={{
-          640: { slidesPerView: 1.3 },
-          1024: { slidesPerView: 1.8 },
-          1280: { slidesPerView: 1.9 },
+          640: { slidesPerView: 1 },
+          1024: { slidesPerView: 2 },
+          1280: { slidesPerView: 2 },
         }}
+        className=""
       >
         {items.map((p, i) => (
           <SwiperSlide key={i} className="h-auto pb-2">
