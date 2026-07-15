@@ -228,7 +228,7 @@ export const footerColumns: MegaColumn[] = [
       { label: "Our Research", href: "/research" },
       { label: "Awards & Recognition", href: "/awards" },
       { label: "Why Madhavbaug", href: "/about" },
-      { label: "Success Stories", href: "#" },
+      { label: "Success Stories", href: "/success-stories" },
       { label: "Forum", href: "#" },
     ],
   },

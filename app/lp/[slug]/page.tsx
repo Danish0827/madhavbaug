@@ -93,7 +93,7 @@ export default async function LandingPage({ params }: Params) {
         />
 
         {/* ---------- Care ---------- */}
-        <section className="scroll-mt-24 px-5 py-10 sm:px-8 lg:px-10 lg:py-10">
+        <section id="why-madhavbaug" className="scroll-mt-24 px-5 py-10 sm:px-8 lg:px-10 lg:py-10">
           <div className="mx-auto grid w-full h-full container items-center gap-10 lg:grid-cols-[45%_55%]">
             {care.care_image?.url && (
               <div className="relative order-1 w-full xl:w-4/5 h-full mx-auto overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 ">
@@ -110,7 +110,7 @@ export default async function LandingPage({ params }: Params) {
         </section>
 
         {/* ---------- Stats (care.counts) ---------- */}
-        {counts.length > 0 && (
+        {slug === "diabetes-doctor-near-me" || slug === "heart-specialist-near-me" || counts.length > 0 && (
           <section className="bg-white px-5 pb-14 sm:px-8 lg:px-10 lg:pb-20">
             <div className="mx-auto grid w-full container gap-5 sm:grid-cols-2 lg:grid-cols-5">
               {counts.map((c, i) => (
@@ -125,7 +125,8 @@ export default async function LandingPage({ params }: Params) {
         )}
 
         {/* ---------- Why Choose (gradient card + image) ---------- */}
-        <section id="why-madhavbaug" className="scroll-mt-24 bg-white px-5 pb-8 sm:px-8 lg:px-10 lg:pb-10">
+        {slug === "diabetes-doctor-near-me" || slug === "heart-specialist-near-me" &&
+        <section className="scroll-mt-24 bg-white px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
           <div className="mx-auto grid w-full container items-stretch gap-5 lg:grid-cols-[55%_45%] lg:gap-0">
             <div className="flex order-2 lg:order-1 flex-col justify-center rounded-4xl bg-gradient-to-br from-[#006589] to-[#3D4281] p-8 text-white sm:p-10 lg:rounded-r-none lg:rounded-l-4xl lg:p-12">
               <SectionLabel tone="light">{why.why_choose_title}</SectionLabel>
@@ -139,7 +140,7 @@ export default async function LandingPage({ params }: Params) {
               </div>
             )}
           </div>
-        </section>
+        </section>}
 
         {/* ---------- Obesity isn't just about weight ---------- */}
         {ob.obesity_information && (
@@ -178,6 +179,20 @@ export default async function LandingPage({ params }: Params) {
               <div className="">
                 <ConsultationCarousel cards={cons.consultation_cards} />
               </div>
+            </div>
+          </section>
+        )}
+
+        {slug !== "diabetes-doctor-near-me" && slug !== "heart-specialist-near-me" || counts.length > 0 && (
+          <section className="bg-white px-5 pb-14 sm:px-8 lg:px-10 lg:pb-20">
+            <div className="mx-auto grid w-full container gap-5 sm:grid-cols-2 lg:grid-cols-5">
+              {counts.map((c, i) => (
+                <div key={i} className="bg-stat-card rounded-[30px] p-6 ring-1 ring-brand-purple/10">
+                  <p className="font-display text-3xl lg:text-2xl xl:text-3xl text-ink">{c.number}</p>
+                  <p className="font-display mt-3 text-lg lg:text-base xl:text-lg text-ink">{c.heading}</p>
+                  <p className="mt-2 text-sm lg:text-xs xl:text-base text-gray-500">{c.short_description}</p>
+                </div>
+              ))}
             </div>
           </section>
         )}
