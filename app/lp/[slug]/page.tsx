@@ -110,7 +110,7 @@ export default async function LandingPage({ params }: Params) {
         </section>
 
         {/* ---------- Stats (care.counts) ---------- */}
-        {slug === "diabetes-doctor-near-me" || slug === "heart-specialist-near-me" || counts.length > 0 && (
+        {counts.length > 0 && (
           <section className="bg-white px-5 pb-14 sm:px-8 lg:px-10 lg:pb-20">
             <div className="mx-auto grid w-full container gap-5 sm:grid-cols-2 lg:grid-cols-5">
               {counts.map((c, i) => (
@@ -125,7 +125,7 @@ export default async function LandingPage({ params }: Params) {
         )}
 
         {/* ---------- Why Choose (gradient card + image) ---------- */}
-        {slug === "diabetes-doctor-near-me" || slug === "heart-specialist-near-me" &&
+        {/* {slug === "diabetes-doctor-near-me" || slug === "heart-specialist-near-me" && */}
         <section className="scroll-mt-24 bg-white px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
           <div className="mx-auto grid w-full container items-stretch gap-5 lg:grid-cols-[55%_45%] lg:gap-0">
             <div className="flex order-2 lg:order-1 flex-col justify-center rounded-4xl bg-gradient-to-br from-[#006589] to-[#3D4281] p-8 text-white sm:p-10 lg:rounded-r-none lg:rounded-l-4xl lg:p-12">
@@ -140,7 +140,7 @@ export default async function LandingPage({ params }: Params) {
               </div>
             )}
           </div>
-        </section>}
+        </section>
 
         {/* ---------- Obesity isn't just about weight ---------- */}
         {ob.obesity_information && (
@@ -183,7 +183,7 @@ export default async function LandingPage({ params }: Params) {
           </section>
         )}
 
-        {slug !== "diabetes-doctor-near-me" && slug !== "heart-specialist-near-me" || counts.length > 0 && (
+        {/* {counts.length > 0 && (
           <section className="bg-white px-5 pb-14 sm:px-8 lg:px-10 lg:pb-20">
             <div className="mx-auto grid w-full container gap-5 sm:grid-cols-2 lg:grid-cols-5">
               {counts.map((c, i) => (
@@ -195,7 +195,7 @@ export default async function LandingPage({ params }: Params) {
               ))}
             </div>
           </section>
-        )}
+        )} */}
 
         {/* ---------- After booking ---------- */}
         {after.after_booking_information && (
