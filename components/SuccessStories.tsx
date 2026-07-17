@@ -74,7 +74,7 @@ export default function SuccessStories() {
         <div className="relative mt-12">
           <div
             ref={trackRef}
-            className=" -mx-5 grid grid-cols-3 gap-6   px-5 pb-4 sm:-mx-8 sm:px-8 lg:-mx-20 lg:px-20"
+            className=" -mx-5 grid md:grid-cols-2 lg:grid-cols-3 gap-6   px-5 pb-4 sm:-mx-8 sm:px-8 lg:-mx-20 lg:px-20"
           >
             {tab === "Videos"
               ? successStories.videos.map((v) => <VideoCard key={v.name} story={v} />)

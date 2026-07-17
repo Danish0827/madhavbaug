@@ -70,7 +70,6 @@ export default async function ClinicDetailPage({ params }: Params) {
             <h1 className="font-display mt-3 text-2xl leading-tight text-ink sm:text-3xl lg:text-[36px]">
               {clinic.title}
             </h1>
-
             {clinic.doctor && (
               <p className="mt-2 flex items-center justify-center gap-2 text-sm text-gray-600">
                 <Stethoscope className="h-4 w-4 text-brand-purple" /> Led by {clinic.doctor}
@@ -108,7 +107,6 @@ export default async function ClinicDetailPage({ params }: Params) {
             </div>
           </div>
         </div>
-
         {/* ---------- Info + map ---------- */}
         <section className="relative z-10 px-5 sm:px-8 lg:px-20">
           <div className="mx-auto mt-12 w-full container">

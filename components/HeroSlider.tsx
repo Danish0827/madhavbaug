@@ -54,16 +54,17 @@ export default function HeroSlider() {
               width={1920}
               height={1080}
               priority={i === 0}
-              className="object-cover object-left lg:object-cover lg:object-center w-full h-full"
+              className="object-cover lg:hidden object-left lg:object-cover lg:object-center w-full h-full"
             />
             {/* Curved gradient panel (desktop) */}
-            {/* <Image
+            <Image
               src="/assets/hero-panel.png"
-              alt=""
-              fill
+              alt={slide.title}
+              width={1920}
+              height={1080}
               priority={i === 0}
               className="hidden object-cover object-right lg:block"
-            /> */}
+            />
             {/* Mobile gradient overlay (fades photo into brand gradient) */}
             <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-indigo-deep via-blue-deep/95 to-transparent lg:hidden" />
 

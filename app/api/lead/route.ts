@@ -23,7 +23,28 @@ type LeadBody = {
   pin?: string;
   source?: string;
   campaign?: string;
-  company?: string; // honeypot
+  company?: string;
+
+  email?: string;
+  disease?: string;
+
+  landing_page?: string;
+  referrer?: string;
+
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_network?: string;
+  utm_keyword?: string;
+  utm_location?: string;
+
+  campaign_id?: string;
+  adset_id?: string;
+  ad_id?: string;
+  match_type?: string;
+  placement?: string;
+  gclid?: string;
+  fbclid?: string;
 };
 
 export async function POST(request: Request) {
@@ -50,7 +71,35 @@ export async function POST(request: Request) {
     );
   }
 
-  const lead = { name, phone, pin, source, campaign, submittedAt: new Date().toISOString() };
+  const lead: Lead = {
+    name,
+    phone,
+    pin,
+    source,
+    campaign,
+    submittedAt: new Date().toISOString(),
+
+    email: body.email,
+    disease: body.disease,
+
+    landing_page: body.landing_page,
+    referrer: body.referrer,
+
+    utm_source: body.utm_source,
+    utm_medium: body.utm_medium,
+    utm_campaign: body.utm_campaign,
+    utm_network: body.utm_network,
+    utm_keyword: body.utm_keyword,
+    utm_location: body.utm_location,
+
+    campaign_id: body.campaign_id,
+    adset_id: body.adset_id,
+    ad_id: body.ad_id,
+    match_type: body.match_type,
+    placement: body.placement,
+    gclid: body.gclid,
+    fbclid: body.fbclid,
+  };
 
   // Deliver to CRM + email in the background so the user isn't blocked by the
   // slow CRM. `after` keeps the invocation alive until these finish.
@@ -64,7 +113,6 @@ export async function POST(request: Request) {
 
   return Response.json({ ok: true });
 }
-
 type Lead = {
   name: string;
   phone: string;
@@ -72,33 +120,77 @@ type Lead = {
   source: string;
   campaign: string;
   submittedAt: string;
-};
 
+  email?: string;
+  disease?: string;
+
+  landing_page?: string;
+  referrer?: string;
+
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_network?: string;
+  utm_keyword?: string;
+  utm_location?: string;
+
+  campaign_id?: string;
+  adset_id?: string;
+  ad_id?: string;
+  match_type?: string;
+  placement?: string;
+  gclid?: string;
+  fbclid?: string;
+};
 async function sendToCrm(lead: Lead): Promise<boolean> {
   const url = process.env.CRM_API_URL;
   const key = process.env.CRM_API_KEY;
-  if (!url || !key) {
-    console.warn("[lead] CRM env not set - skipping CRM push");
-    return false;
-  }
+
+  if (!url || !key) return false;
+
   const res = await fetch(url, {
     method: "POST",
-    headers: { "X-API-Key": key, "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": key,
+    },
     body: JSON.stringify({
       name: lead.name,
       phone: lead.phone,
-      patient_pincode: lead.pin,
-      medium: lead.source,
+      email: lead.email || "",
+      disease: lead.disease || "",
+      city: lead.pin,
+
       source: lead.source,
       campaign: lead.campaign,
+
+      utm_source: lead.utm_source,
+      utm_medium: lead.utm_medium,
+      utm_campaign: lead.utm_campaign,
+      utm_network: lead.utm_network,
+      utm_keyword: lead.utm_keyword,
+      utm_location: lead.utm_location,
+
+      campaignid: lead.campaign_id,
+      adgroupid: lead.adset_id,
+      creative: lead.ad_id,
+      matchtype: lead.match_type,
+      placement: lead.placement,
+      gclid: lead.gclid,
+
+      landing_page: lead.landing_page,
+      referrer: lead.referrer,
     }),
-    // The CRM is slow (~35s); give it room but never hang forever.
     signal: AbortSignal.timeout(50000),
   });
+
   if (!res.ok) {
-    const detail = await res.text().catch(() => "");
-    throw new Error(`CRM returned ${res.status} ${detail.slice(0, 200)}`);
+    const err = await res.text();
+    throw new Error(err);
   }
+
+  console.log(await res.text());
+
   return true;
 }
 
@@ -106,7 +198,7 @@ async function sendEmail(lead: Lead): Promise<boolean> {
   const host = process.env.LEAD_MAIL_HOST;
   const user = process.env.LEAD_MAIL_USER;
   const pass = process.env.LEAD_MAIL_PASS;
-  const to = process.env.LEAD_MAIL_TO || user;
+  const to = ['danish@healthus.ai','healthusads@gmail.com'];
   if (!host || !user || !pass) {
     console.warn("[lead] mail env not set - skipping email");
     return false;
@@ -128,13 +220,36 @@ async function sendEmail(lead: Lead): Promise<boolean> {
     replyTo: user,
     subject: `New Lead - ${lead.campaign} - ${lead.name}`,
     text:
-      `New lead from ${lead.campaign}:\n\n` +
+      `New Lead Received\n\n` +
+
       `Name: ${lead.name}\n` +
       `Phone: ${lead.phone}\n` +
-      `PIN Code: ${lead.pin || "-"}\n` +
+      `Email: ${lead.email || "-"}\n` +
+      `Disease: ${lead.disease || "-"}\n` +
+      `PIN Code: ${lead.pin || "-"}\n\n` +
+
       `Source: ${lead.source}\n` +
       `Campaign: ${lead.campaign}\n` +
-      `Time: ${lead.submittedAt}\n`,
+      `Submitted At: ${lead.submittedAt}\n\n` +
+
+      `Landing Page: ${lead.landing_page || "-"}\n` +
+      `Referrer: ${lead.referrer || "-"}\n\n` +
+
+      `------------- UTM Details -------------\n` +
+      `UTM Source: ${lead.utm_source || "-"}\n` +
+      `UTM Medium: ${lead.utm_medium || "-"}\n` +
+      `UTM Campaign: ${lead.utm_campaign || "-"}\n` +
+      `UTM Network: ${lead.utm_network || "-"}\n` +
+      `UTM Keyword: ${lead.utm_keyword || "-"}\n` +
+      `UTM Location: ${lead.utm_location || "-"}\n\n` +
+
+      `Campaign ID: ${lead.campaign_id || "-"}\n` +
+      `Adset ID: ${lead.adset_id || "-"}\n` +
+      `Ad ID: ${lead.ad_id || "-"}\n` +
+      `Match Type: ${lead.match_type || "-"}\n` +
+      `Placement: ${lead.placement || "-"}\n` +
+      `GCLID: ${lead.gclid || "-"}\n` +
+      `FBCLID: ${lead.fbclid || "-"}\n`,
   });
   return true;
 }

@@ -148,7 +148,7 @@ export default async function LandingPage({ params }: Params) {
             <div className="mx-auto grid w-full h-full container items-center gap-10 lg:grid-cols-[45%_55%]">
               {ob.obesity_image?.url && (
                <div className="relative order-1 xl:w-4/5 h-full mx-auto overflow-hidden rounded-[30px] shadow-sm ring-1 ring-black/5 ">
-                  <Image src={ob.obesity_image.url} alt={ob.obesity_main_title || ""} width={1000} height={1000} className="object-cover lg:h-150  object-center"  />
+                  <Image src={ob.obesity_image.url} alt={ob.obesity_main_title || ""} width={2000} height={2000} className="object-cover w-full h-full object-center"  />
                 </div>
               )}
               <div className="order-1 lg:order-2">
