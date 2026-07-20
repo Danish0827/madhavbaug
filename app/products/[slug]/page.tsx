@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: Params) {
       <Navbar />
       <main>
         {/* ---------- Breadcrumb ---------- */}
-        <section className="border-b border-gray-100 bg-surface-lav/50 px-5 pt-28 pb-5 sm:px-8 lg:px-10">
+        {/* <section className="border-b border-gray-100 bg-surface-lav/50 px-5 pt-28 pb-5 sm:px-8 lg:px-10">
           <nav
             aria-label="Breadcrumb"
             className="mx-auto flex w-full container flex-wrap items-center gap-2 text-sm"
@@ -63,21 +63,21 @@ export default async function ProductPage({ params }: Params) {
             <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
             <span className="text-ink">{p.title}</span>
           </nav>
-        </section>
+        </section> */}
 
         {/* ---------- Product hero ---------- */}
-        <section className="px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-          <div className="mx-auto grid w-full container items-start gap-10 lg:grid-cols-2 lg:gap-14">
+        <section className="px-5 pt-32 pb-12 sm:px-8 lg:px-10 lg:pt-50 lg:pb-24">
+          <div className="mx-auto grid w-full container items-start gap-10 lg:grid-cols-[45%_55%] lg:gap-14">
             {/* Image */}
-            <div className="relative aspect-square w-full overflow-hidden rounded-[30px] bg-surface-lav ring-1 ring-black/5">
+            <div className="relative aspect-square w-full mx-auto overflow-hidden rounded-[30px] lg:scale-95 bg-white ring-1 ring-black/5">
               {p.image ? (
                 <Image
                   src={p.image.large}
                   alt={p.image.alt || p.title}
-                  fill
+                  width={2000}
+                  height={2000}
                   priority
-                  className="object-contain p-8"
-                  sizes="(max-width:1024px) 100vw, 600px"
+                  className="object-contain"
                 />
               ) : (
                 <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-brand-purple/40">
@@ -146,7 +146,7 @@ export default async function ProductPage({ params }: Params) {
 
         {/* ---------- Related products ---------- */}
         {p.related.length > 0 && (
-          <section className="bg-surface-lav px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
+          <section className="bg-gradient-to-b from-[#006589] to-0% px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
             <div className="mx-auto w-full container">
               <div className="mb-10 text-center">
                 <div className="flex justify-center">
@@ -157,7 +157,7 @@ export default async function ProductPage({ params }: Params) {
                 </h2>
               </div>
               <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
-                {p.related.slice(0, 8).map((r) => (
+                {p.related.slice(0, 4).map((r) => (
                   <ProductCard key={r.id} product={r} />
                 ))}
               </div>

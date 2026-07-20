@@ -52,7 +52,7 @@ export default function AboutPage() {
             { label: "About" },
           ]}
           primaryButton={{
-            label: "Explore the Madhavbaug Approach to Treatment",
+            label: "Explore the Madhavbaug Approach",
             href: "/about",
           }}
           secondaryButton={null}
@@ -195,7 +195,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="relative h-full overflow-hidden rounded-[32px] ring-1 ring-black/5">
-              <Image src="/assets/about/journey.png" alt="Madhavbaug journey" width={1200} height={1200} className="object-cover w-full h-full"/>
+              <Image src="/assets/about/journey.png" alt="Madhavbaug journey" width={1200} height={1200} className="object-cover w-full h-full" />
             </div>
           </div>
 
@@ -263,20 +263,20 @@ export default function AboutPage() {
                   <div className={`${TEAL} p-6 text-white`}>
                     <h3 className="font-display text-xl lg:text-2xl">{v.title}</h3>
                     <p className="mt-2 text-sm font-normal leading-relaxed text-white/85">{v.description}</p>
-                    
+
                     <div className="mt-5">
-                <Link
-                 href={v.href}
-                  className="inline-flex items-center group"
-                >
-                  <span className="bg-white group-hover:bg-white/90 text-[rgb(137,47,172)] group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium  shadow-lg">
-                   Learn More
-                  </span>
-                  <span className="flex  w-fit h-8.5 items-center justify-center rounded-full bg-white/20">
-                    <ArrowUpRight className="font-thin w-full h-full p-2 rounded-full bg-white group-hover:bg-white/90 group-hover:rotate-45 group-hover:shadow-xl duration-300 text-[rgb(137,47,172)] shadow-lg" />
-                  </span>
-                </Link>
-              </div>
+                      <Link
+                        href={v.href}
+                        className="inline-flex items-center group"
+                      >
+                        <span className="bg-white group-hover:bg-white/90 text-[rgb(137,47,172)] group-hover:shadow-xl inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium  shadow-lg">
+                          Learn More
+                        </span>
+                        <span className="flex  w-fit h-8.5 items-center justify-center rounded-full bg-white/20">
+                          <ArrowUpRight className="font-thin w-full h-full p-2 rounded-full bg-white group-hover:bg-white/90 group-hover:rotate-45 group-hover:shadow-xl duration-300 text-[rgb(137,47,172)] shadow-lg" />
+                        </span>
+                      </Link>
+                    </div>
                   </div>
                 </article>
               ))}

@@ -15,16 +15,17 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={href}
-      className="group flex h-full flex-col overflow-hidden rounded-[26px] bg-white shadow-sm ring-1 ring-black/5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+      className="group flex h-full flex-col overflow-hidden rounded-[26px] bg-white shadow-sm ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg"
     >
-      <div className="relative aspect-square w-full overflow-hidden bg-surface-lav">
+      <div className="relative aspect-square w-full overflow-hidden bg-white">
         {product.image ? (
           <Image
             src={product.image.medium}
             alt={product.image.alt || product.title}
-            fill
-            className="object-contain p-5 transition-transform duration-300 group-hover:scale-105"
-            sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 260px"
+            width={1000}
+            height={1000}
+            className="object-contain transition-transform duration-300 "
+            
           />
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-brand-purple/40">
@@ -38,7 +39,6 @@ export default function ProductCard({ product }: { product: Product }) {
           </span>
         )}
       </div>
-
       <div className="flex flex-1 flex-col p-5">
         <h3 className="font-display text-base leading-snug text-ink line-clamp-2 group-hover:text-brand-purple">
           {product.title}

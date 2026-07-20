@@ -13,6 +13,7 @@ import {
   independentDirectors,
   type BoardMember,
 } from "@/data/board";
+import HeroBreadcrumb from "@/components/HeroBreadcrumb";
 
 export const metadata: Metadata = {
   title: "Board of Directors | Madhavbaug",
@@ -39,7 +40,7 @@ function DirectorPhoto({ name }: { name: string }) {
 
 function DirectorRow({ member }: { member: BoardMember }) {
   const info = (
-    <div className="flex flex-col justify-center rounded-[28px] bg-surface-lav p-8 lg:p-10">
+    <div className="flex flex-col justify-center rounded-[28px] bg-white p-8 lg:p-10">
       <h3 className="font-display bg-gradient-to-r from-brand-purple-soft to-brand-purple bg-clip-text text-xl text-transparent lg:text-2xl">
         {member.name}
       </h3>
@@ -83,60 +84,23 @@ export default function BoardOfDirectorsPage() {
     <>
       <Navbar />
       <main>
-        {/* ---------- Hero ---------- */}
-        <section className="relative">
-          <div className="bg-brand-gradient relative min-h-[440px] overflow-hidden lg:min-h-[560px]">
-            <div className="absolute inset-0 hidden lg:block">
-              <Image
-                src="/assets/board/hero.png"
-                alt="Madhavbaug board room"
-                fill
-                priority
-                className="object-cover object-left"
-                sizes="100vw"
-              />
-            </div>
-            <div className="relative mx-auto w-full container px-5 py-16 sm:px-8 lg:px-20 lg:py-28">
-              <div className="lg:ml-auto lg:w-1/2 lg:pl-6">
-                <h1 className="font-display text-3xl leading-tight text-white sm:text-4xl lg:text-[40px]">
-                  {boardHero.heading}
-                </h1>
-                <p className="mt-5 text-sm leading-relaxed text-white/85 lg:text-base">
-                  {boardHero.description}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Breadcrumb pill */}
-          <div className="relative z-10 mx-auto -mt-12 w-full max-w-[900px] px-4 lg:-mt-16">
-            <div className="rounded-[28px] bg-white px-6 py-7 text-center shadow-[0_20px_60px_-30px_rgba(0,0,0,0.35)] sm:px-10 lg:rounded-[56px]">
-              <nav
-                aria-label="Breadcrumb"
-                className="flex items-center justify-center gap-2 text-sm"
-              >
-                {boardHero.breadcrumbs.map((item, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    {index > 0 && <ChevronRight className="h-3.5 w-3.5 text-gray-400" />}
-                    {item.href ? (
-                      <Link href={item.href} className="text-[#7c44a8] hover:underline">
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <span className="text-[#2b2b2b]">{item.label}</span>
-                    )}
-                  </div>
-                ))}
-              </nav>
-              <h2 className="font-display mt-2 text-2xl text-ink lg:text-[28px]">
-                {boardHero.pillTitle}
-              </h2>
-            </div>
-          </div>
-        </section>
+        <HeroBreadcrumb
+          image={'/assets/board/hero.png'}
+          imageAlt={boardHero.pillTitle}
+          heroTitle={boardHero.heading}
+          heroDescription={boardHero.description}
+          pageTitle={boardHero.pillTitle}
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+    { label: "About Us", href: "/about" },
+    { label: "Board of Directors" }
+          ]}
+          primaryButton={null}
+          secondaryButton={null}
+        />
 
         {/* ---------- Executive Leadership ---------- */}
-        <section className="px-5 pt-16 pb-8 sm:px-8 lg:px-20 lg:pt-20">
+        <section className="bg-[#006589]/10 px-5 pt-16 pb-8 sm:px-8 lg:px-20 lg:pt-20">
           <div className="mx-auto w-full container">
             <div className="mx-auto max-w-3xl text-center">
               <div className="flex justify-center">
@@ -155,7 +119,7 @@ export default function BoardOfDirectorsPage() {
         </section>
 
         {/* ---------- Independent & Non-Executive Directors ---------- */}
-        <section className="px-5 pt-8 pb-16 sm:px-8 lg:px-20 lg:pb-20">
+        <section className="bg-[#006589]/10 px-5 pt-8 pb-16 sm:px-8 lg:px-20 lg:pb-20">
           <div className="mx-auto w-full container">
             <div className="mx-auto max-w-3xl text-center">
               <div className="flex justify-center">

@@ -49,7 +49,7 @@ export default async function HospitalPage({ params }: Params) {
          <HeroBreadcrumb
                   image={h?.banner?.image?.url ? h?.banner?.image?.url : "/assets/images/breadcrump/banner-1.webp"}
                   imageAlt={h.banner.bottomTitle}
-                  heroTitle={h.banner.bottomTitle}
+                  heroTitle={h.banner.heading}
                   heroDescription= {h.banner.shortDescription}
                   pageTitle={h.banner.bottomTitle}
                   breadcrumbs={[
@@ -64,57 +64,9 @@ export default async function HospitalPage({ params }: Params) {
                   secondaryButton={null}
                 />
         {/* ---------- Hero ---------- */}
-        <section className="relative">
-          <div className="relative min-h-[460px] overflow-hidden bg-brand-gradient lg:min-h-[560px]">
-            {h.banner.image?.url && (
-              <Image
-                src={h.banner.image.url}
-                alt={h.banner.bottomTitle}
-                fill
-                priority
-                className="object-cover"
-                sizes="100vw"
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/10" />
-            <div className="relative mx-auto w-full container px-5 py-16 sm:px-8 lg:px-20 lg:py-24">
-              <div className="max-w-2xl">
-                <h1 className="font-display text-3xl leading-tight text-white sm:text-4xl lg:text-[40px]">
-                  {h.banner.heading}
-                </h1>
-                <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/85 lg:text-base">
-                  {h.banner.shortDescription}
-                </p>
-                <Link
-                  href={LOCATOR}
-                  className="btn-gradient mt-8 inline-flex items-center gap-2 rounded-full py-3 pr-2.5 pl-5 text-sm font-medium text-white shadow-lg transition-shadow hover:shadow-xl"
-                >
-                  {h.banner.button?.title || "Book a Consultation"}
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Breadcrumb pill */}
-          <div className="relative z-10 mx-auto -mt-12 w-full max-w-[920px] px-4 lg:-mt-16">
-            <div className="rounded-[28px] bg-white px-6 py-7 text-center shadow-[0_20px_60px_-30px_rgba(0,0,0,0.4)] sm:px-10 lg:rounded-[56px]">
-              <nav aria-label="Breadcrumb" className="flex flex-wrap items-center justify-center gap-2 text-sm">
-                <Link href="/" className="text-[#7c44a8] hover:underline">Home</Link>
-                <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
-                <Link href={LOCATOR} className="text-[#7c44a8] hover:underline">Clinics &amp; Hospitals</Link>
-                <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
-                <span className="text-[#2b2b2b]">{h.banner.bottomTitle}</span>
-              </nav>
-              <h2 className="font-display mt-2 text-2xl text-ink lg:text-[30px]">{h.banner.bottomTitle}</h2>
-            </div>
-          </div>
-        </section>
-
+      
         {/* ---------- About ---------- */}
-        <section className="px-5 pt-16 pb-14 sm:px-8 lg:px-20 lg:pt-20">
+        <section className="px-5  pb-14 sm:px-8 lg:px-20">
           <div className="mx-auto grid w-full container items-center gap-10 lg:grid-cols-2">
             <div>
               <SectionLabel>{h.about.title}</SectionLabel>

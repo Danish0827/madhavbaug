@@ -6,6 +6,9 @@ import SiteFooter from "@/components/SiteFooter";
 import PageBanner from "@/components/PageBanner";
 import ProductsBrowser from "@/components/products/ProductsBrowser";
 import { fetchProducts, fetchProductCategories } from "@/lib/products";
+import PromiseQuality from "@/components/PromiseQuality";
+import FaqSection from "@/components/FaqSection";
+import { dietFaqs } from "@/data/dietPlans";
 
 export const metadata: Metadata = {
   title: "Products | Madhavbaug",
@@ -35,6 +38,13 @@ export default async function ProductsPage() {
         <section className="px-5 pt-24 pb-16 sm:px-8 lg:px-10 lg:pt-28">
           <ProductsBrowser products={products} categories={categories} />
         </section>
+
+        <PromiseQuality />
+        <FaqSection
+          items={dietFaqs}
+          title="Frequently Asked Questions About Our Products"
+          className=""
+        />
 
         <FinalCTA />
       </main>

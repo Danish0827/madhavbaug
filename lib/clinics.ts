@@ -235,31 +235,30 @@ function parseStat(html?: string): ClinicStat | null {
 
 /** Fetch one clinic's full detail by slug (GET /clinic/<slug>). */
 export async function fetchClinicBySlug(slug: string): Promise<ClinicDetail | null> {
-  const res = await fetch(`${BASE}/clinic/${encodeURIComponent(slug)}`, {
+  const res = await fetch(`${BASE}/clinics/single/${encodeURIComponent(slug)}`, {
     headers: FETCH_HEADERS,
     next: { revalidate: 300 },
   });
-  if (res.status === 404) return null;
-  if (!res.ok) throw new Error(`Upstream returned ${res.status}`);
+  console.log(res);
+  
+  if (res.status === 200) return res.json();
+  // if (res.status === 404) return null;
 
-  const raw: RawClinic = await res.json();
-  if (!raw?.id) return null;
+  // if (!res.ok) throw new Error(`Upstream returned ${res.status}`);
 
-  const base = normalise(raw);
-  const acf = raw.acf ?? {};
-  const stats = [
-    parseStat(acf.consultation_done),
-    parseStat(acf.years_of_experience),
-    parseStat(acf.heart_disease_patients_treated),
-    parseStat(acf.diabetes_patients_treated),
-  ].filter((s): s is ClinicStat => s !== null);
+  // const raw: RawClinic = await res.json();
+  // if (!raw?.id) return null;
 
-  return {
-    ...base,
-    stats,
-    whatsappUrl: base.whatsapp ? `https://wa.me/${base.whatsapp}` : "",
-    clinicVideo: acf.clinic_video ?? "",
-  };
+  // const base = normalise(raw);
+  // const acf = raw.acf ?? {};
+  // const stats = [
+  //   parseStat(acf.consultation_done),
+  //   parseStat(acf.years_of_experience),
+  //   parseStat(acf.heart_disease_patients_treated),
+  //   parseStat(acf.diabetes_patients_treated),
+  // ].filter((s): s is ClinicStat => s !== null);
+
+  // return res
 }
 
 function toTerm(t: { id: number; name: string; slug: string; count?: number }): GeoTerm {

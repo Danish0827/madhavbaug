@@ -58,7 +58,7 @@ export default function HeroSlider() {
             />
             {/* Curved gradient panel (desktop) */}
             <Image
-              src="/assets/hero-panel.png"
+              src={slide.image}
               alt={slide.title}
               width={1920}
               height={1080}
@@ -71,7 +71,7 @@ export default function HeroSlider() {
             {/* Copy */}
             <div className="absolute inset-0">
               <div className="mx-auto flex h-full container items-end px-5 pb-20 sm:px-8 lg:items-center lg:px-20 lg:pb-0">
-                <div className="max-w-md text-white lg:ml-auto">
+                <div className="max-w-sm xl:max-w-lg 2xl:max-w-xl text-white lg:ml-auto">
                   <h1 className="font-display text-[30px] leading-tight sm:text-4xl lg:text-3xl xl:text-[40px]">
                     {slide.title}
                   </h1>

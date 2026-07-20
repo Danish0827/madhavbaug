@@ -133,7 +133,7 @@ export default function ProductsBrowser({
           <button
             type="button"
             onClick={() => setVisible((v) => v + PAGE_SIZE)}
-            className="btn-gradient rounded-full px-8 py-3 text-sm font-medium text-white shadow-md transition-shadow hover:shadow-lg"
+            className="btn-gradient cursor-pointer rounded-full px-8 py-3 text-sm font-medium text-white shadow-md transition-shadow hover:shadow-lg"
           >
             Load more products
           </button>

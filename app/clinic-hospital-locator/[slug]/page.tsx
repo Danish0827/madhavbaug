@@ -37,7 +37,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function ClinicDetailPage({ params }: Params) {
   const { slug } = await params;
+  console.log(slug,"saSAA");
+  
   const clinic = await fetchClinicBySlug(slug).catch(() => null);
+  console.log(clinic,"data araha aahia");
+  
   if (!clinic) notFound();
 
   return (
@@ -163,7 +167,7 @@ export default async function ClinicDetailPage({ params }: Params) {
           </div>
         </section>
         {/* ---------- Stats ---------- */}
-        {clinic.stats.length > 0 && (
+        {/* {clinic.stats.length > 0 && (
           <section className="px-5 py-14 sm:px-8 lg:px-20 lg:py-20">
             <div className="mx-auto grid w-full container gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {clinic.stats.map((stat) => (
@@ -177,7 +181,7 @@ export default async function ClinicDetailPage({ params }: Params) {
               ))}
             </div>
           </section>
-        )}
+        )} */}
 
         {/* ---------- Treatments & Diagnostics carousel ---------- */}
         <TreatmentsCarousel treatments={clinicTreatments} clinicName={clinic.city || "Madhavbaug"} />

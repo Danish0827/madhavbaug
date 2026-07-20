@@ -13,7 +13,7 @@ import HeroBreadcrumb from "@/components/HeroBreadcrumb";
 export const metadata: Metadata = {
   title: "Dr. Rohit Sane — Founder | Madhavbaug",
   description:
-    "Dr Rohit Madhav Sane, Founder, MD & CEO of Madhavbaug — MBBS with a fellowship in cardiac rehabilitation, pioneering evidence-based Ayurveda for chronic disease reversal.",
+    "Dr Rohit Madhav Sane, Founder, MD of Madhavbaug — MBBS with a fellowship in cardiac rehabilitation, pioneering evidence-based Ayurveda for chronic disease reversal.",
 };
 
 const founderStats = [
@@ -47,7 +47,7 @@ export default function FounderPage() {
           imageAlt="Our Founder"
           heroTitle="Dr Rohit Madhav Sane"
           heroDescription={`<p className="mt-3 text-lg text-white/90">
-                              Founder, Managing Director &amp; CEO, Madhavbaug
+                              Founder, Managing Director Madhavbaug
                             </p>
                             <p className="mt-1 text-sm font-semibold text-white">
                               MBBS | Fellowship in Cardiac Rehabilitation (FCR)
